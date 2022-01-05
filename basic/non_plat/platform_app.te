@@ -1,9 +1,3 @@
-# ==============================================
-# Common SEPolicy Rule 
-# ==============================================
-
-typeattribute platform_app mlstrustedsubject;
-
 # Date : 2017/07/03
 # Operation : Migration
 # Purpose : get/set agps configuration via mtk_hal_lbs
