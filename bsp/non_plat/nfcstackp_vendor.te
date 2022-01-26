@@ -1,0 +1,38 @@
+# ==============================================
+# Policy File of /vendor/bin/nfcstackp_vendor Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
+type nfcstackp_vendor,domain;
+type nfcstackp_vendor_exec, exec_type, file_type, vendor_file_type;
+
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+# Date : WK2019
+# Purpose : Start nfcstackp_vendor to serve EM
+init_daemon_domain(nfcstackp_vendor);
+
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+# Date : WK2019
+# Purpose : Add availablities to access nfc socket
+allow nfcstackp_vendor vendor_nfc_socket:dir w_dir_perms;
+allow nfcstackp_vendor vendor_nfc_socket:sock_file create_file_perms;
+
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+# Date : WK2019
+# Purpose : Add availablities to access nfc device
+allow nfcstackp_vendor st21nfc_device:chr_file rw_file_perms;
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+# Allow interaction with search_service
+allow permissioncontroller_app search_service:service_manager find;
+
+# Allow interaction with uimode_service
+allow permissioncontroller_app uimode_service:service_manager find;
+
+

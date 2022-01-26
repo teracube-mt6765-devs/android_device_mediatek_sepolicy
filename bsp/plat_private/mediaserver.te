@@ -1,0 +1,13 @@
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
+# Date : WK17.50
+# Operation : CMCC
+# Purpose: Allow set property to notify rtsp server timeout
+set_prop(mediaserver, system_prop)
+
+# Date : WK19.16
+# Operation : WFD
+# Purpose: Allow property operations
+get_prop(mediaserver, system_mtk_media_wfd_prop)

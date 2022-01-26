@@ -1,0 +1,53 @@
+# ==============================================
+# Policy File of /vendor/bin/thermal_core Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
+type thermal_core_exec , exec_type, file_type, vendor_file_type;
+type thermal_core ,domain;
+
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+init_daemon_domain(thermal_core)
+
+#thermal socket file, policy setting file
+allow thermal_core thermal_core_data_file:file create_file_perms;
+allow thermal_core thermal_core_data_file:dir { rw_dir_perms setattr};
+allow thermal_core thermal_core_data_file:sock_file create;
+allow thermal_core thermal_socket:dir { rw_dir_perms setattr};
+allow thermal_core thermal_socket:sock_file create_file_perms;
+allow thermal_core vendor_shell_exec:file execute_no_trans;
+#send notification to thermal hal
+allow thermal_core hal_thermal_default:unix_stream_socket connectto;
+allow thermal_core thermal_hal_socket:sock_file write;
+
+
+allow thermal_core mediaserver:fd use;
+allow thermal_core mediaserver:fifo_file { rw_file_perms };
+allow thermal_core mediaserver:tcp_socket { read write };
+
+# Date : WK16.30
+# Operation : Migration
+# Purpose :
+allow thermal_core camera_isp_device:chr_file { rw_file_perms };
+allow thermal_core cameraserver:fd use;
+allow thermal_core kd_camera_hw_device:chr_file { rw_file_perms };
+allow thermal_core MTK_SMI_device:chr_file r_file_perms;
+allow thermal_core surfaceflinger:fd use;
+set_prop(thermal_core, vendor_mtk_thermal_config_prop)
+
+#for thermal sysfs
+allow thermal_core sysfs_therm:file rw_file_perms;
+allow thermal_core sysfs_therm:dir search;
+allow thermal_core sysfs_thermal_ipi:file rw_file_perms;
+allow thermal_core sysfs_thermal_ipi:dir search;
+
+
+#for md_on/md_off control
+allow thermal_core rild:unix_stream_socket connectto;
+allow thermal_core rild_oem_socket:sock_file write;
+
+#for reboot cooler
+allow thermal_core self:capability sys_boot;

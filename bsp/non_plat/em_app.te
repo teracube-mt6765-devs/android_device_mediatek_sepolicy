@@ -1,0 +1,70 @@
+# ==============================================
+# Policy File of /system/priv-app/EngineerMode/EngineerMode.apk Executable File
+
+#For Rild hidl connection
+allow em_app mtk_hal_rild_hwservice:hwservice_manager find;
+allow em_app rild:binder { call transfer };
+allow rild em_app:binder call;
+allow em_app radio_service:service_manager find;
+
+# For lbs hidl usage
+allow em_app mtk_hal_lbs_hwservice:hwservice_manager find;
+allow em_app lbs_hidl_service:binder call;
+
+# Allow to get vendor_mtk_dmc_prop
+get_prop(em_app, vendor_mtk_dmc_prop)
+
+# Date: 2020/03/25
+# Purpose : Allow get USB Current Speed in Engineer Mode
+get_prop(em_app, vendor_mtk_usb_prop)
+
+# Date: 2020/04/30
+#Purose: telephony -> Vilte
+get_prop(em_app,vendor_mtk_vendor_vt_prop)
+#Purose: SIM Switch
+get_prop(em_app,vendor_mtk_simswitch_emmode_prop)
+
+# Date: 2020/04/30
+# Purpose: telephony ->IMS
+get_prop(em_app,vendor_mtk_mims_prop)
+get_prop(em_app,vendor_mtk_smsformat_prop) #em_hidl
+get_prop(em_app,vendor_mtk_imstestmode_prop)
+get_prop(em_app,vendor_mtk_dsbp_support_prop)
+
+# Date: 2020/04/30
+#Purpose: telephony ->MobileDataPreferred %%em_hidl
+get_prop(em_app,vendor_mtk_gprs_prefer_prop)
+
+# Date: 2020/04/30
+#Purpose: telephony ->RatConfiguration
+get_prop(em_app,vendor_mtk_rat_config_prop)
+get_prop(em_app,vendor_mtk_tel_switch_prop)
+
+# Date : 2020/04/30
+#Purpose: FeatureSupport
+get_prop(em_app,vendor_mtk_default_prop)
+get_prop(em_app,vendor_mtk_mdm_prop)
+get_prop(em_app,vendor_mtk_aal_ro_prop)
+get_prop(em_app,vendor_mtk_fd_support_prop)
+get_prop(em_app,vendor_mtk_wfd_support_prop)
+get_prop(em_app,vendor_mtk_vilte_support_prop)
+get_prop(em_app,vendor_mtk_mdworldmode_prop)
+get_prop(em_app,vendor_mtk_log_tel_dbg_prop)
+get_prop(em_app,vendor_mtk_ril_mode_prop)
+get_prop(em_app,vendor_mtk_wfc_support_prop)
+get_prop(em_app,vendor_mtk_telephony_addon_prop)
+get_prop(em_app,vendor_mtk_ims_prop)
+
+# Date : 2020/04/30
+#Purpose: PrefsFragment
+get_prop(em_app,vendor_mtk_cxp_vendor_prop)
+
+# Date: 2020/04/30
+# Purpose: telephony ->IMS ,ModemCategory
+get_prop(em_app,vendor_mtk_radio_prop)
+
+# Date : 2020/04/28
+# Purpose : STMicro NFC integration for Engineering mode
+allow em_app nfc_service:service_manager find;
+
+

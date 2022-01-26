@@ -1,0 +1,12 @@
+# ==============================================
+# Policy File of /vendor/bin/GoogleOtaBinder Executable File 
+
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
+allow GoogleOtaBinder ota_agent_service:service_manager add;
+
+#/dev/misc
+allow GoogleOtaBinder misc_device:chr_file { write read open ioctl};
+
