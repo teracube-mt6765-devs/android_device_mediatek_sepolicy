@@ -83,8 +83,3 @@ allow meta_tst persist_data_file:dir create_dir_perms;
 allow meta_tst persist_data_file:file create_file_perms;
 allow meta_tst mobicore_vendor_file:file lock;
 allow meta_tst self:capability chown;
-
-# Date : WK20.51
-# Purpose: Allow meta connect to sysfs_pmu
-allow meta_tst sysfs_pmu:dir search;
-allow meta_tst sysfs_pmu:file rw_file_perms;

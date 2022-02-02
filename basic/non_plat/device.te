@@ -288,6 +288,3 @@ type m_bio_misc_device, dev_type;
 # Purpose : Add permission for gpu access
 type dri_device, dev_type, mlstrustedobject;
 
-type gps_emi_device, dev_type;
-type vpud_device, dev_type;
-type vcu_device, dev_type;

@@ -16,9 +16,6 @@
 /data/vendor/verizon(/.*)? u:object_r:omadm_data_file:s0
 /data/vendor/misc/msdata(/.*)? u:object_r:omadm_misc_file:s0
 
-/dev/goodix_fp     u:object_r:fingerprint_device:s0
-/data/vendor/.img(/.*)? u:object_r:gpunn_data_file:s0
-
 ##############################
 # TrustKernel add
 #############################
@@ -168,8 +165,6 @@
 # tetheroffload
 /(system\/vendor|vendor)/bin/hw/tetheroffloadservice u:object_r:hal_tetheroffload_default_exec:s0
 /dev/mddp        u:object_r:mddp_device:s0
-
-/(vendor|system/vendor)/bin/hw/android\.hardware\.neuralnetworks@1\.3-service-gpunn              u:object_r:mtk_hal_neuralnetworks_exec:s0
 
 ###################
 # system data files

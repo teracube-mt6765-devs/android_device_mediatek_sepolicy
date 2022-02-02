@@ -51,3 +51,6 @@ allow volte_stack self:netlink_xfrm_socket { write bind create read nlmsg_write 
 # to NETD
 allow volte_stack netd:unix_stream_socket connectto;
 allow volte_stack netd_socket:sock_file write;
+allow netd volte_stack:fd use;
+allow netd volte_stack:tcp_socket { read write setopt getopt };
+allow netd volte_stack:udp_socket {read write setopt getopt};

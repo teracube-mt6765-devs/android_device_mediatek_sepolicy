@@ -1,7 +1,11 @@
+
 # SELinux Policy File Configuration
 BOARD_SEPOLICY_DIRS += \
     device/mediatek/sepolicy/basic/non_plat \
     device/mediatek/sepolicy/bsp/non_plat \
+    device/mediatek/sepolicy/$(TARGET_BOARD_PLATFORM)/basic \
+    device/mediatek/sepolicy/$(TARGET_BOARD_PLATFORM)/bsp \
+    device/mediatek/sepolicy/$(TARGET_BOARD_PLATFORM)/full \
     device/mediatek/sepolicy/modem
 
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \

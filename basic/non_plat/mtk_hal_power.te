@@ -239,7 +239,3 @@ allow mtk_hal_power proc_mcdi:file rw_file_perms;
 # Purpose: add permission for /sys/kernel/eara_thermal/
 allow mtk_hal_power sysfs_eara_thermal:dir r_dir_perms;
 allow mtk_hal_power sysfs_eara_thermal:file rw_file_perms;
-
-# vpud_native contorl cpu
-allow mtk_hal_power vpud_native:dir { search getattr };
-allow mtk_hal_power vpud_native:file { getattr open write read };

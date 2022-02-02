@@ -494,28 +494,3 @@ genfscon proc /rid u:object_r:proc_rid:s0
 # Date : 2021/02/02
 # Purpose: Add permission for /sys/devices/platform/bootdevice/host0/target0:0:0/0:0:0:0/vpd_pg80
 genfscon sysfs /devices/platform/bootdevice/host0/target0:0:0/0:0:0:0/vpd_pg80  u:object_r:sysfs_vpd:s0
-
-genfscon sysfs /devices/platform/1000d000.pwrap/1000d000.pwrap:main_pmic/mt6357-charger-type-detection/power_supply/mtk_charger_type/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/1000d000.pwrap/1000d000.pwrap:main_pmic/mt6357-gauge/power_supply/battery/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/1000d000.pwrap/1000d000.pwrap:main_pmic/mt6357-gauge/power_supply/mtk-gauge/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/1000d000.pwrap/1000d000.pwrap:main_pmic/mt635x-auxadc/wakeup/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/1000d000.pwrap/1000d000.pwrap:main_pmic/mt6397-rtc/rtc/rtc0/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/1000d000.pwrap/1000d000.pwrap:main_pmic/mt6397-rtc/wakeup/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/11016000.i2c5/i2c-5/5-0034/mt6370_pmu_charger/power_supply/mt6370_pmu_charger/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/11016000.i2c5/i2c-5/5-0034/wakeup/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/11016000.i2c5/i2c-5/5-004e/tcpc/type_c_port0/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/11016000.i2c5/i2c-5/5-004e/wakeup/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/15020000.imgsys/wakeup/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/charger/power_supply/mtk-master-charger/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/charger/power_supply/mtk-slave-charger/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/trusty/wakeup/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/misc/alarm/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/atc/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/data/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/dummy0/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/dummy1/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/dummy2/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/ets/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/gps/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/usb_rawbulk/pcv/wakeup u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/wakeup/wakeup u:object_r:sysfs_wakeup:s0

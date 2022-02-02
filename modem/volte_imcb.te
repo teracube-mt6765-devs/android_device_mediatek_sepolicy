@@ -45,6 +45,9 @@ set_prop(volte_imcb, vendor_mtk_md_volte_prop)
 # to NETD
 allow volte_imcb netd:unix_stream_socket connectto;
 allow volte_imcb netd_socket:sock_file write;
+allow netd volte_imcb:fd use;
+allow netd volte_imcb:tcp_socket { read write setopt getopt };
+allow netd volte_imcb:udp_socket {read write setopt getopt};
 
 # Date : 2020/02/24
 # Purpose : pttyims

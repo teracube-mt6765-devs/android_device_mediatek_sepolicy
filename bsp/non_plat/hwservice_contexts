@@ -57,21 +57,6 @@ vendor.mediatek.hardware.dmc::IDmcService u:object_r:mtk_hal_dmc_hwservice:s0
 # Android Q diagnostic framework migration
 vendor.mediatek.hardware.apmonitor::IApmService u:object_r:mtk_hal_apm_hwservice:s0
 
-vendor.mediatek.hardware.hdcpconnection::IHDCPConnection u:object_r:mtk_hal_hdcp_hwservice:s0
-
-# Date : 2020/06/10
-# Define apuware context
-vendor.mediatek.hardware.apuware.apusys::INeuronApusys u:object_r:hal_neuralnetworks_hwservice:s0
-vendor.mediatek.hardware.apuware.xrp::INeuronXrp u:object_r:hal_neuralnetworks_hwservice:s0
-
-# Date : 2020/06/16
-# Define vpu hidl context
-vendor.mediatek.hardware.vpu::Ivpu u:object_r:hal_neuralnetworks_hwservice:s0
-
-# Date : 2020/07/03
-# Define uitls hidl context for ann
-vendor.mediatek.hardware.apuware.utils::IApuwareUtils u:object_r:hal_neuralnetworks_hwservice:s0
-
 # ==============================================
 # TEE SEPolicy Rule
 # ==============================================
@@ -118,6 +103,27 @@ vendor.mediatek.hardware.touchll::ITouchll u:object_r:mtk_hal_touchll_hwservice:
 # Date: 2019/11/07
 vendor.mediatek.hardware.thp::ITHP u:object_r:mtk_hal_thp_hwservice:s0
 
+# ==============================================
+# TEE SEPolicy Rule
+# ==============================================
 vendor.trustonic.tee::ITee                        u:object_r:hal_tee_hwservice:s0
 vendor.trustonic.tee.tui::ITui                    u:object_r:hal_tee_hwservice:s0
 vendor.trustonic.teeregistry::ITeeRegistry        u:object_r:hal_teeregistry_hwservice:s0
+
+# ==============================================
+# HDCP Policy Rule
+# ==============================================
+vendor.mediatek.hardware.hdcpconnection::IHDCPConnection u:object_r:mtk_hal_hdcp_hwservice:s0
+
+# Date : 2020/06/10
+# Define apuware context
+vendor.mediatek.hardware.apuware.apusys::INeuronApusys u:object_r:hal_neuralnetworks_hwservice:s0
+vendor.mediatek.hardware.apuware.xrp::INeuronXrp u:object_r:hal_neuralnetworks_hwservice:s0
+
+# Date : 2020/06/16
+# Define vpu hidl context
+vendor.mediatek.hardware.vpu::Ivpu u:object_r:hal_neuralnetworks_hwservice:s0
+
+# Date : 2020/07/03
+# Define uitls hidl context for ann
+vendor.mediatek.hardware.apuware.utils::IApuwareUtils u:object_r:hal_neuralnetworks_hwservice:s0

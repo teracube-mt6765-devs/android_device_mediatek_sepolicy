@@ -75,9 +75,14 @@ allow ipsec devpts:chr_file { open read write };
 
 # to NETD
 unix_socket_connect(ipsec,netd,netd);
+allow netd ipsec:fd use;
+allow netd ipsec:tcp_socket { read write setopt getopt };
+allow netd ipsec:udp_socket {read write setopt getopt};
 
 # Propose: access configuration files
 allow ipsec wod_ipsec_conf_file:sock_file { write create unlink setattr };
 allow ipsec proc_modules:file getattr;
 allow ipsec proc_net:file getattr;
 allow ipsec vendor_configs_file:file ioctl;
+
+

@@ -793,11 +793,3 @@
 # Date:2020/12/24
 # add dev/socket/netdiag for security
 /dev/socket/netdiag   u:object_r:netdiag_socket:s0
-
-# define raw block partition label
-/dev/gps_emi(/.*)? u:object_r:gps_emi_device:s0
-
-# vpud sepolicy #
-/vendor/bin/vpud             u:object_r:vpud_native_exec:s0
-/dev/vcu                     u:object_r:vcu_device:s0
-/dev/vpud                    u:object_r:vpud_device:s0

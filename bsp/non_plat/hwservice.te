@@ -12,31 +12,22 @@ type volte_rcs_ua_hwservice, hwservice_manager_type;
 type mtk_hal_dfps_hwservice, hwservice_manager_type;
 type mtk_hal_dplanner_hwservice, hwservice_manager_type;
 type mtk_hal_pplagent_hwservice, hwservice_manager_type;
-
 # omadm hidl
 type mtk_hal_omadm_hwservice, hwservice_manager_type;
-
 # DMC HIDL
 type mtk_hal_dmc_hwservice, hwservice_manager_type;
-
 # APM HIDL
 type mtk_hal_apm_hwservice, hwservice_manager_type;
-
 # nwk opt HIDL
 type mtk_hal_nwk_opt_hwservice, hwservice_manager_type;
-
 # touchll HIDL
 type mtk_hal_touchll_hwservice, hwservice_manager_type;
-
 # thp
 type mtk_hal_thp_hwservice, hwservice_manager_type;
-
-type mtk_hal_hdcp_hwservice, hwservice_manager_type;
 
 # ==============================================
 # TEE SEPolicy Rule
 # ==============================================
-
 # microtrust THH service manager type
 type hal_thh_hwservice, hwservice_manager_type;
 # microtrust TUI service manager type
@@ -55,5 +46,11 @@ type hal_teeregistry_hwservice, hwservice_manager_type;
 # Purpose : Add for HIDL service
 type mtk_mdm_hidl_server, hwservice_manager_type;
 
+
 #client API HIDL
 type volte_clientapi_ua_hwservice, hwservice_manager_type;
+
+# ==============================================
+# HDCP Policy Rule
+# ==============================================
+type mtk_hal_hdcp_hwservice, hwservice_manager_type;

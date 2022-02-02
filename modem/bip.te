@@ -41,3 +41,7 @@ allow bip node:rawip_socket {node_bind};
 
 allow bip netd:unix_stream_socket connectto;
 allow bip netd_socket:sock_file write;
+
+allow netd bip:fd use;
+allow netd bip:tcp_socket { read write setopt getopt };
+allow netd bip:udp_socket {read write setopt getopt};

@@ -42,7 +42,3 @@ allow factory nfcstackp_vendor:unix_stream_socket connectto;
 # Date : 2020/05/12
 # Purpose : Add availablities to set property
 set_prop(factory, vendor_mtk_nfc_nfcstackp_enable_prop)
-
-allow factory fingerprint_device:chr_file rw_file_perms;
-allow factory tmpfs:chr_file rw_file_perms;
-allow factory self:netlink_socket create_socket_perms_no_ioctl;

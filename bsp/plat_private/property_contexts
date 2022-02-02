@@ -201,3 +201,5 @@ service.ctm.slot_flag u:object_r:system_mtk_ctm_prop:s0
 vendor.sf.gll.istarget u:object_r:system_mtk_graphics_sf_gll_prop:s0
 vendor.sf.gll.q2l u:object_r:system_mtk_graphics_sf_gll_prop:s0
 vendor.sf.gll.avgl2p u:object_r:system_mtk_graphics_sf_gll_prop:s0
+
+
