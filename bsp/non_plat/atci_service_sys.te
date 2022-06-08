@@ -24,6 +24,3 @@ allow atci_service_sys factory_data_file:sock_file write;
 hwbinder_use(atci_service_sys)
 hal_client_domain(atci_service_sys, hal_atci)
 
-# Date : WK18.21
-# Purpose : Move audio command to atci service
-get_prop(atci_service_sys, vendor_default_prop)

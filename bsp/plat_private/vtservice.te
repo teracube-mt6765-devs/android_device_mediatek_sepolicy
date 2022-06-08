@@ -15,10 +15,6 @@ binder_service(vtservice)
 
 get_prop(vtservice, hwservicemanager_prop)
 
-# Date: 2018/07/19
-# Operation: P Migration
-get_prop(vtservice, vendor_default_prop)
-
 # Date: 2018/08/24
 # Operation: add mdp
 get_prop(vtservice, system_mtk_debug_bq_dump_prop)

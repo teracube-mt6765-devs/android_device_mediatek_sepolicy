@@ -27,9 +27,6 @@ allow em_app location_service:service_manager find;
 # Allow for Wifi manager usage
 allow em_app wifi_service:service_manager find;
 
-# Allow EM reading vendor property
-get_prop(em_app, vendor_default_prop)
-
 # For Wifi
 allow em_app self:udp_socket { create ioctl };
 allowxperm em_app self:udp_socket ioctl { SIOCIWFIRSTPRIV_0B SIOCIWFIRSTPRIV_0F SIOCSIWMODE SIOCIWFIRSTPRIV_01 SIOCIWFIRSTPRIV_09 SIOCDEVPRIVATE_2 };
@@ -120,7 +117,7 @@ allow em_app debugfs_usb_plat:dir search;
 
 # Date : 2020/03/25
 #For usb test
-set_prop(em_app, exported_system_radio_prop)
+set_prop(em_app, usb_control_prop)
 
 # Date: 2020/03/25
 # For PMU reading
@@ -196,7 +193,7 @@ get_prop(em_app,radio_prop)
 
 # Date : 2020/04/30
 #Purpose: FeatureSupport ro.build.type, ro.board.platform
-get_prop(em_app,exported2_default_prop)
+get_prop(em_app,build_prop)
 get_prop(em_app,exported_default_prop)
 
 # Date: 2020/04/30

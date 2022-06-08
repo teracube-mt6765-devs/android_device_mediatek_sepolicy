@@ -42,9 +42,6 @@ allow crash_dump proc_lk_env:file rw_file_perms;
 # Purpose: Allow crash_dump to read /proc/pid/exe
 #allow crash_dump exec_type:file r_file_perms;
 
-# Purpose: Allow crash_dump to read /proc/cpu/alignment
-allow crash_dump proc_cpu_alignment:file { write open };
-
 # Purpose: Allow crash_dump to access /sys/devices/virtual/timed_output/vibrator/enable
 allow crash_dump sysfs_vibrator_setting:dir search;
 allow crash_dump sysfs_vibrator_setting:file w_file_perms;
@@ -53,9 +50,6 @@ allow crash_dump sysfs_leds:dir search;
 
 # Purpose: Allow crash_dump to read /proc/kpageflags
 allow crash_dump proc_kpageflags:file r_file_perms;
-
-# temp solution
-get_prop(crash_dump, vendor_default_prop)
 
 hal_client_domain(crash_dump, mtk_hal_aee)
 

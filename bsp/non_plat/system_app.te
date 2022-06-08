@@ -184,5 +184,4 @@ allow system_app mtk_hal_log_hwservice:hwservice_manager find;
 binder_call(system_app, loghidlvendorservice);
 
 # MICROTRUST add for setting get prop
-allow system_app vendor_default_prop:file { read getattr open };
 allow system_app teei_client_device:chr_file r_file_perms;

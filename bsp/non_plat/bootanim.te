@@ -21,7 +21,3 @@ allow bootanim dri_device:chr_file { read write open ioctl };
 
 #============= bootanim ==============
 allow bootanim debugfs_ion:dir search;
-
-#====== bootanim =====
-
-get_prop(bootanim, vendor_default_prop)

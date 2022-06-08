@@ -8,10 +8,6 @@ allow radio proc_ccci_lp_mem:file r_file_perms;
 # Purpose : Allow sim system to set prop
 set_prop(radio, system_mtk_sim_system_prop)
 
-# Date : 2018/07/03
-# Purpose : Allow Mwi to get vendor default properties (ro.vendor.*)
-get_prop(radio, vendor_default_prop)
-
 # Operation : DEBUG
 # Purpose : Allow to use system_mtk_bgdata_disabled_prop
 set_prop(radio, system_mtk_bgdata_disabled_prop)
