@@ -8,9 +8,6 @@ ro.audio.usb.period_us u:object_r:exported_default_prop:s0 exact int
 #allow adb daemon to read "persist.adb.nonblocking_ffs"
 persist.adb.nonblocking_ffs u:object_r:exported_default_prop:s0 exact int
 
-#============system fingerprint property===========
-ro.system.build.fingerprint u:object_r:exported_fingerprint_prop:s0 exact string
-
 vendor.MB.logpost         u:object_r:system_mtk_mobile_log_post_prop:s0
 vendor.MB.logpost.        u:object_r:system_mtk_mobile_log_post_prop:s0
 persist.vendor.MB.logpost u:object_r:system_mtk_mobile_log_post_prop:s0

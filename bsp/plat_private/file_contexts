@@ -39,7 +39,6 @@
 /system/bin/mdmi_redirector u:object_r:mdmi_redirector_exec:s0
 
 #resize userdata's filesystem size
-/system/bin/resize2fs u:object_r:resize_exec:s0
 /system/bin/resize.f2fs u:object_r:resize_exec:s0
 
 #MTK touchll hal
