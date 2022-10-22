@@ -5,7 +5,7 @@
 # Date : WK14.32
 # Operation : Migration
 # Purpose : for playing boot tone
-allow bootanim mediaserver:binder {call transfer};
+binder_call(bootanim, mediaserver)
 allow bootanim mediaserver_service:service_manager find;
 
 # Purpose : for playing bootanimation audio
@@ -26,7 +26,7 @@ set_prop(bootanim, system_mtk_bootani_prop)
 # Operation : Migration
 # /data/resource-cache
 allow bootanim resourcecache_data_file:dir search;
-allow bootanim resourcecache_data_file:file { read getattr open };
+allow bootanim resourcecache_data_file:file r_file_perms;
 
 # Data : WK16.42
 # Operator: Whitney bring up
@@ -36,11 +36,4 @@ allow bootanim surfaceflinger:fifo_file rw_file_perms;
 # Date : W16.42
 # Operation : Integration
 # Purpose : DRM / DRI GPU driver required
-
 allow bootanim gpu_device:dir search;
-
-#============= bootanim ==============
-#allow bootanim debugfs_tracing:file write;
-
-#============= bootanim ==============
-#allow bootanim debugfs_tracing:file open;

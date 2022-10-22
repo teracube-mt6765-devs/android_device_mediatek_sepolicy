@@ -1,7 +1,0 @@
-# ==============================================
-# Policy File of /system/bin/met_log_d Executable File
-
-# ==============================================
-# Type Declaration
-# ==============================================
-type met_log_d, domain;

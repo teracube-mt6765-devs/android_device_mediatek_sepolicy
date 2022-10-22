@@ -1,6 +1,7 @@
 # ==============================================
 # Common SEPolicy Rule
-# ============
+# ==============================================
+
 # Date : WK14.38
 # Operation : Migration
 # Purpose : run guitar_update for touch F/W upgrade.
@@ -9,7 +10,6 @@ allow kernel sdcard_type:dir search;
 # Date : WK14.39
 # Operation : Migration
 # Purpose : ums driver can access blk_file
-allow kernel block_device:blk_file rw_file_perms;
 allow kernel loop_device:blk_file r_file_perms;
 allow kernel vold_device:blk_file rw_file_perms;
 
@@ -28,10 +28,10 @@ allow kernel proc_thermal:dir search;
 # Purpose : grant storage_file and wifi_data_file for kernel thread mtk_wmtd to access /sdcard/wifi.cfg
 # and /data/misc/wifi/wifi.cfg to access wifi.cfg, in which, some wifi driver configuations are there.
 allow kernel mnt_user_file:dir search;
-allow kernel mnt_user_file:lnk_file read;
+allow kernel mnt_user_file:lnk_file r_file_perms;
 allow kernel wifi_data_file:file r_file_perms;
 allow kernel wifi_data_file:dir search;
-allow kernel storage_file:lnk_file read;
+allow kernel storage_file:lnk_file r_file_perms;
 allow kernel sdcard_type:file open;
 
 # Data : WK16.16
@@ -47,8 +47,8 @@ allow kernel misc2_block_device:blk_file rw_file_perms;
 # Date : WK16.30
 # Operation: SQC
 # Purpose: Allow sdcardfs workqueue to access lower file systems
-allow kernel { fuseblk }:dir create_dir_perms;
-allow kernel { fuseblk }:file create_file_perms;
+allow kernel fuseblk:dir create_dir_perms;
+allow kernel fuseblk:file create_file_perms;
 
 # Date : WK16.30
 # Operation: SQC

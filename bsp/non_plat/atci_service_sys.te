@@ -1,13 +1,11 @@
 # ==============================================
-# Policy File of /vendor/bin/atci_service_sys Executable File
-# ==============================================
+# Policy File of /system/bin/atci_service_sys Executable File
 
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
 
-allow atci_service_sys nfc_socket:dir { write add_name remove_name search };
-allow atci_service_sys nfc_socket:sock_file { create write unlink setattr };
+allow atci_service_sys nfc_socket_file:dir w_dir_perms;
 allow atci_service_sys system_file:file execute_no_trans;
 
 # Date : WK16.33
@@ -21,6 +19,4 @@ allow atci_service_sys factory_data_file:sock_file write;
 
 # Date : WK18.21
 # Purpose: Allow to use HIDL
-hwbinder_use(atci_service_sys)
-hal_client_domain(atci_service_sys, hal_atci)
-
+hal_client_domain(atci_service_sys, hal_mtk_atci)

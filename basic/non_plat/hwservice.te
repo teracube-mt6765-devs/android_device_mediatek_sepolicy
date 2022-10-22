@@ -1,3 +1,7 @@
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
 type mtk_hal_bluetooth_hwservice, hwservice_manager_type;
 
 # Date: 2017/05/9
@@ -17,7 +21,7 @@ type mtk_hal_imsa_hwservice, hwservice_manager_type;
 
 # Date: 2017/07/12
 # NVRAM HIDL
-type nvram_agent_binder_hwservice, hwservice_manager_type;
+type mtk_hal_nvramagent_hwservice, hwservice_manager_type;
 
 # Date: 2017/07/19
 # PQ HIDL
@@ -43,12 +47,13 @@ type mtk_hal_em_hwservice, hwservice_manager_type;
 # MMS HIDL
 type mtk_hal_mms_hwservice, hwservice_manager_type, mtk_safe_hwservice_manager_type;
 
-type hal_atci_hwservice, hwservice_manager_type;
-type mtk_hal_keymanage_hwservice, hwservice_manager_type;
+type mtk_hal_atci_hwservice, hwservice_manager_type;
 
-# Date: 2019/04/26
-# GPU HIDL
-type mtk_hal_gpu_hwservice, hwservice_manager_type;
+# Date: 2020/12/02
+# MMAgent HIDL
+type mtk_hal_mmagent_hwservice, hwservice_manager_type;
+
+type mtk_hal_keymanage_hwservice, hwservice_manager_type;
 
 # Date: 2019/06/12
 # modem db filter hidl
@@ -62,8 +67,10 @@ type mtk_hal_hdmi_hwservice, hwservice_manager_type;
 # BGService HIDL
 type mtk_hal_bgs_hwservice, hwservice_manager_type;
 
-type mtk_hal_aee_hwservice, hwservice_manager_type;
-
 # Date: 2019/07/04
 # bluetooth audio hidl
 type mtk_hal_bluetooth_audio_hwservice,hwservice_manager_type;
+
+# Date: 2021/06/30
+# composer extension HIDL
+type mtk_hal_composer_ext_hwservice, hwservice_manager_type, protected_hwservice;

@@ -1,7 +1,0 @@
-# ==============================================
-# Common SEPolicy Rule
-# ==============================================
-
-# Date : WK20.43
-# Purpose: Allow to access ged debug fs
-allow vendor_modprobe debugfs_ged:dir search;

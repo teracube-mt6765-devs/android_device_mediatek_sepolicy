@@ -81,3 +81,8 @@ allow rild self:capability2 wake_alarm;
 # Operation: IMS Config NR force value
 # Purpose: Allow rild to force set IMS NR feature
 set_prop(rild, vendor_mtk_vonr_force_prop)
+
+# Date : 2021/09/17
+# Operation: vonr setting
+# Purpose: Allow rild to set vonr support property
+set_prop(rild, vendor_mtk_vonr_support_prop)

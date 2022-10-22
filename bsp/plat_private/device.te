@@ -1,9 +1,0 @@
-# ==============================================
-# Common SEPolicy Rule
-# ==============================================
-
-# Date : 2019/11/07
-# Operation : Add touchll feature
-# Purpose : Add permission for touchll
-type tll_device, dev_type;
-

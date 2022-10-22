@@ -2,15 +2,10 @@
 # Policy File of /vendor/bin/dmc_core Executable File
 
 # ==============================================
-# Type Declaration
-# ==============================================
-
-type dmc_core, domain;
-type dmc_core_exec ,exec_type, file_type, vendor_file_type;
-
-# ==============================================
 # Common SEPolicy Rule
 # ==============================================
+
+type dmc_core_exec, exec_type, file_type, vendor_file_type;
 
 init_daemon_domain(dmc_core)
 
@@ -20,8 +15,8 @@ init_daemon_domain(dmc_core)
 # ==============================================
 
 # Purpose : allow dmc_core to start DMC and APM HIDL server
-hal_server_domain(dmc_core, mtk_hal_dmc)
-hal_server_domain(dmc_core, mtk_hal_apm)
+hal_server_domain(dmc_core, hal_mtk_dmc)
+hal_server_domain(dmc_core, hal_mtk_apm)
 
 # Purpose : for dmc_core to connenct to md_monitor
 hal_client_domain(dmc_core, md_monitor_hal)

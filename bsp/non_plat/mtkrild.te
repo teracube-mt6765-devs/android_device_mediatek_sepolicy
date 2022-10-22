@@ -1,5 +1,5 @@
 # ==============================================
-# Policy File of /vendor/bin/mtkrild Executable File
+# Policy File of /system/bin/mtkrild Executable File
 
 # ==============================================
 # Common SEPolicy Rule
@@ -20,8 +20,3 @@ set_prop(mtkrild, vendor_mtk_vsim_prop)
 # Operation: P migration
 # Purpose: Allow mtkrild to get/set vendor_mtk_ims_prop
 set_prop(mtkrild, vendor_mtk_ims_prop)
-
-# Date : WK18.29
-# Operation: Ims config TelephonyWare dev
-# Purpose: Allow mtkrild to get/set vendor_mtk_provision_prop
-set_prop(rild, vendor_mtk_provision_prop)

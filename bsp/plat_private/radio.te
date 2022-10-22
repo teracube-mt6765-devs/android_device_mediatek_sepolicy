@@ -1,3 +1,31 @@
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
+allow radio mtk_registry_service:service_manager add;
+
+# Fix boot violation
+add_service(radio, mtk_radio_service)
+
+# Date : WK1721 2017/5/26
+# Operation : IT
+# Purpose : Allow to use HAL Wfo
+hal_client_domain(radio, hal_mtk_wfo)
+
+# Date : 2017/06/06
+# Purpose: for iphonesubinfoEx service
+add_service(radio, mtk_phonesubinfo_service)
+
+# Date : 2017/06/15
+# Purpose: for mtksimphonebook service
+add_service(radio, mtk_simphonebook_service)
+
+# Date : 2017/08/14
+# Operation : VT development
+# Purpose : Add vtservice to support video telephony functionality
+#           3G VT/ViLTE both use this service which will also communication with IMCB/Rild
+allow radio vtservice_service:service_manager find;
+
 # Date : 2017/09/25
 # Operation : Migration IT with Privacy Protection Lock
 # Purpose : for pplSmsFilterExtension find ppl_agent service
@@ -86,6 +114,10 @@ set_prop(radio, system_mtk_subsidylock_connect_prop)
 # Operation: Support SubsidyLock
 get_prop(radio, system_mtk_subsidylock_prop)
 
+# Date: 2018/12/20
+# Operation: Support GWSD
+add_service(radio, mtk_gwsd_service)
+
 # Date : 2019/05/16
 # Operation : MDM IT with Swift app
 # Purpose : for app labeled by radio to auto start md_monitor
@@ -119,6 +151,10 @@ get_prop(radio, system_mtk_selfreg_prop)
 # Purpose : apps need to get networkdatacontroller Service
 allow radio cta_networkdatacontroller_service:service_manager find;
 
+# Date : 2021/07/27
+# Operation : Migration
+# Purpose : Allow presence service to add AOSP service by ServiceManager
+allow radio uce_service:service_manager add;
 
 # Date: 2019/04/10
 # Purpose: ctm set property
@@ -133,3 +169,15 @@ add_service(radio, mtk_vodata_service)
 # Operation : R Migration
 # Purpose : allow radio to get telephony log property
 get_prop(radio, system_mtk_em_tel_log_prop)
+
+# Date : 2021/01/07
+# Purpose : Allow radio to read ro.vendor.mtk_gwsd_support
+get_prop(radio, system_mtk_gwsd_prop)
+
+# Date : 2021/04/25
+# Purpose : Allow radio to read fastdormancy property
+get_prop(radio, system_mtk_fd_prop)
+
+# Date : 2021/12/22
+# Purpose : Allow radio to read ims debug property
+get_prop(radio, system_mtk_dbg_ims_prop)

@@ -1,8 +1,0 @@
-# ==============================================
-# Common SEPolicy Rule
-# ==============================================
-
-# Date : WK20.51
-# Purpose: Allow meta connect to sysfs_pmu
-allow meta_tst sysfs_pmu:dir search;
-allow meta_tst sysfs_pmu:file rw_file_perms;

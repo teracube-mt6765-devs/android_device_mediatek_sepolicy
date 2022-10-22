@@ -1,14 +1,9 @@
 # ==============================================
-# Policy File of /vendor/bin/flashlessd Executable File 
+# Policy File of /vendor/bin/flashlessd Executable File
 
 type flashlessd_exec, exec_type, file_type, vendor_file_type;
-type flashlessd, domain;
-
-
-# permissive flashlessd;
 
 init_daemon_domain(flashlessd)
-
 
 #============= flashlessd ttyMT related ==============
 allow flashlessd ttyMT_device:chr_file rw_file_perms;

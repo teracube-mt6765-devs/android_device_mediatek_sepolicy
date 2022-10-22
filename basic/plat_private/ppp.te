@@ -3,6 +3,6 @@
 # ==============================================
 
 # Date : WK14.53
-# Operation : check in 
-# Purpose: for warning kernel API 
-allow ppp mtp:file read;
+# Operation : check in
+# Purpose: for warning kernel API
+allow ppp mtp:file r_file_perms;

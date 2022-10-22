@@ -2,8 +2,6 @@
 # Common SEPolicy Rule
 # ==============================================
 
-allow untrusted_app_all tee_service:service_manager find;
-
 # Date: 2019/06/17
 # Operation : Migration
 # Purpose :allow untrusted_app to search debugfs_ion dir

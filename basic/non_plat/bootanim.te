@@ -1,3 +1,4 @@
+
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
@@ -32,3 +33,8 @@ allowxperm bootanim proc_perfmgr:file ioctl {
 # Operation : Migration
 # Purpose : Allow to access gpu device search
 allow bootanim gpu_device:dir search;
+
+# Date : WK21.26
+# Operation : Migration
+# Purpose : donotaudit data directory search
+dontaudit bootanim system_data_file:dir search;

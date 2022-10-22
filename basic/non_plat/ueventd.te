@@ -1,3 +1,7 @@
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
 # Date : WK17.12
 # Purpose: Fix bootup fail
 allow ueventd proc_net:file r_file_perms;

@@ -1,66 +1,51 @@
 # ==============================================
 # Common SEPolicy Rule
-# ============
-
-#Add by rui.hu
+# ==============================================
 
 # Date : WK14.30
 # Operation : DRM UT
 # Purpose : To pass DRM UT
-
-allow drmserver nvram_agent_binder:binder call;
+allow drmserver mtk_hal_nvramagent:binder call;
 allow drmserver platform_app:dir search;
 allow drmserver platform_app:file { read getattr open };
 allow drmserver radio_data_file:file { read getattr open };
 allow drmserver sdcard_type:file open;
 
-#Add by rui.hu
 # Date : WK14.36
 # Operation : DRM UT
 # Purpose : Make drmserver and binder read /proc/pid/cmdline to get process name
-#system app to drmserver
 allow drmserver system_app:dir search;
 allow drmserver system_app:file { read open getattr };
-#Mediaserver to drmserver
+
+# Mediaserver to drmserver
 allow drmserver mediaserver:dir search;
 allow drmserver mediaserver:file { read open getattr };
 
-#Add by rui.hu
 # Date : WK14.36.5
 # Operation : DRM UT
 # Purpose : Make widevine mediacodec mode work
 allow drmserver untrusted_app:dir search;
 allow drmserver untrusted_app:file { read open getattr };
 
-#Add by rui.hu
 # Date : WK14.40.1
 # Operation : DRM SQC - play OMA DRM audio file failed
 # Purpose : Make OMA DRM audio file can be played
 allow drmserver radio_data_file:dir search;
 
-#Add by rui.hu
 # Date : WK14.44.2
 # Operation : DRM SQC - view image failed
 # Purpose : To fix ALPS01790300
 allow drmserver surfaceflinger:fd use;
 
-#Add by rui.hu
 # Date : WK14.44.3
 # Operation : MTBF test fail
 # Purpose : To fix ALPS01793801
 allow drmserver mediaserver:fifo_file read;
 
-#Add by rui.hu
 # Date : WK14.46.4
 # Operation : DRM SQC - view image failed
 # Purpose : To fix ALPS01822176
 allow drmserver mediaserver:fifo_file write;
-
-# Date : WK15.15
-# Operation : GMS APP SQC
-# Purpose : Let Drive app can work
-#allow drmserver app_data_file:dir search;
-#allow drmserver app_data_file:file open;
 
 # Date : WK15.30
 # Operation : Migration
@@ -83,8 +68,6 @@ allow drmserver storage_file:lnk_file read;
 use_drmservice(system_server)
 allow drmserver system_server:file getattr;
 allow system_server drmserver:drmservice openDecryptSession;
-allow drmserver nvram_agent_service:service_manager find;
-
 
 # Date : WK15.35
 # Operation : Migration
@@ -153,10 +136,8 @@ allow drmserver proc_uptime:file r_file_perms;
 # Operation : Migration issue
 allow drmserver mediaextractor:dir search;
 allow drmserver mediaextractor:file { read open getattr };
-#============= drmserver ==============
 allow drmserver untrusted_app_25:dir search;
 allow drmserver untrusted_app_25:file { getattr open read };
 
-#============= drmserver ==============
 allow drmserver proc_uptime:file read;
 allow drmserver sdcardfs:file open;

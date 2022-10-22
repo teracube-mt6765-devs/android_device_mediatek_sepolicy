@@ -1,17 +1,11 @@
 # ==============================================
 # Policy File of /vendor/bin/viarild Executable File
 
-
-# ==============================================
-# Type Declaration
-# ==============================================
-
-type viarild_exec , exec_type, file_type, vendor_file_type;
-type viarild ,domain;
-
 # ==============================================
 # Common SEPolicy Rule
-# ==============================================
+# =============================================
+type viarild_exec, exec_type, file_type, vendor_file_type;
+typeattribute viarild mtkimsapdomain;
 
 init_daemon_domain(viarild)
 net_domain(viarild)
@@ -29,17 +23,15 @@ allow viarild bluetooth_efs_file:file r_file_perms;
 allow viarild bluetooth_efs_file:dir r_dir_perms;
 allow viarild sdcardfs:dir r_dir_perms;
 
-# property service
 set_prop(viarild, vendor_mtk_cdma_prop)
 set_prop(viarild, vendor_mtk_ril_cdma_report_prop)
 set_prop(viarild, vendor_mtk_ril_mux_report_case_prop)
 set_prop(viarild, vendor_mtk_radio_prop)
 set_prop(viarild, vendor_mtk_ril_ipo_prop)
 
-#Dat: 2017/02/14
-#Purpose: allow set telephony Sensitive property
+# Dat: 2017/02/14
+# Purpose: allow set telephony Sensitive property
 set_prop(viarild, vendor_mtk_telephony_sensitive_prop)
-set_prop(statusd, vendor_mtk_telephony_sensitive_prop)
 
 allow viarild tty_device:chr_file rw_file_perms;
 
@@ -63,50 +55,27 @@ allow viarild proc_lk_env:file { read ioctl open };
 allow viarild sysfs_vcorefs_pwrctrl:file { open write };
 set_prop(viarild, vendor_mtk_ril_active_md_prop)
 
-#Search permission for findPidByName
-allow statusd domain:dir search;
-
-#set for mux
+# set for mux
 allow viarild devpts:chr_file setattr;
 allow viarild self:capability chown;
 allow viarild self:capability fowner;
 allow viarild self:capability setuid;
-#For MAL MFI
+
+# For MAL MFI
 allow viarild mal_mfi_socket:sock_file write;
 
-#N bringup: viarild is lunched by Statusd, should add the following permission to Status.
-allow statusd devpts:chr_file setattr;
-allow statusd devpts:chr_file { read write };
-allow statusd devpts:chr_file open;
-allow statusd devpts:chr_file ioctl;
-
-#For Vzw Phone CCP - Set IPV6 RS
+# For Vzw Phone CCP - Set IPV6 RS
 allow viarild proc_net:file write;
-
-#For Kryptowire mtklog issue
-allow viarild aee_aedv:unix_stream_socket connectto;
 
 # If viarild(which belongs to vendor partition) want to open binder dev node(e.g. Parcel) will be
 # denied for no permission. Should use vndbinder dev node in vendor domain.
 # Using the following sepolicy rule to allow viarild to use vendor binder.
-vndbinder_use(viarild);
+vndbinder_use(viarild)
 
 # Allow to trigger IPv6 RS
 allow viarild node:rawip_socket node_bind;
-
-typeattribute viarild mtkimsapdomain;
-typeattribute statusd mtkimsapdomain;
 
 # Allow to config network
 allowxperm viarild self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
 allow viarild sysfs_ccci:dir search;
 allow viarild sysfs_ccci:file r_file_perms;
-# Denali statusd context permission
-allowxperm statusd self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
-allow statusd sysfs_ccci:dir search;
-allow statusd sysfs_ccci:file r_file_perms;
-
-# Denali O : Add permission to statusd.
-allow statusd vndbinder_device:chr_file { read write };
-allow statusd vndbinder_device:chr_file open;
-allow statusd vndbinder_device:chr_file ioctl;

@@ -2,14 +2,15 @@
 # Policy File of /vendor/bin/rild Executable File
 
 # ==============================================
-# Type Declaration
-# ==============================================
-
-# ==============================================
 # Common SEPolicy Rule
 # ==============================================
 # Access to wake locks
 wakelock_use(rild)
+
+#Date : W17.21
+#Purpose: Grant permission to access binder dev node
+vndbinder_use(rild)
+
 # Trigger module auto-load.
 allow rild kernel:system module_request;
 
@@ -22,13 +23,11 @@ allow rild cgroup:dir create_dir_perms;
 # Property service
 # allow set RIL related properties (radio./net./system./etc)
 set_prop(rild, vendor_mtk_ril_active_md_prop)
+
 # allow set muxreport control properties
 set_prop(rild, vendor_mtk_ril_cdma_report_prop)
 set_prop(rild, vendor_mtk_ril_mux_report_case_prop)
 set_prop(rild, vendor_mtk_ctl_muxreport-daemon_prop)
-
-# Access to wake locks
-wakelock_use(rild)
 
 # Allow access permission to efs files
 allow rild efs_file:dir create_dir_perms;
@@ -38,9 +37,7 @@ allow rild bluetooth_efs_file:dir r_dir_perms;
 
 # Allow access permission to dir/files
 # (radio data/system data/proc/etc)
-# Violate Android P rule
 allow rild sdcardfs:dir r_dir_perms;
-#allow rild system_file:file x_file_perms;
 allow rild proc_net:file w_file_perms;
 
 # Allow rild to create and use netlink sockets.
@@ -52,19 +49,18 @@ allow rild mtk_radio_device:dir search;
 allow rild radio_device:chr_file rw_file_perms;
 allow rild radio_device:blk_file r_file_perms;
 allow rild mtd_device:dir search;
+
 # Allow read/write to tty devices
 allow rild tty_device:chr_file rw_file_perms;
-allow rild eemcs_device:chr_file { rw_file_perms };
+allow rild eemcs_device:chr_file rw_file_perms;
 
-#allow rild Vcodec_device:chr_file { rw_file_perms };
-allow rild devmap_device:chr_file { r_file_perms };
-allow rild devpts:chr_file { rw_file_perms };
-allow rild ccci_device:chr_file { rw_file_perms };
-allow rild misc_device:chr_file { rw_file_perms };
+allow rild devmap_device:chr_file r_file_perms;
+allow rild devpts:chr_file rw_file_perms;
+allow rild ccci_device:chr_file rw_file_perms;
+allow rild misc_device:chr_file rw_file_perms;
 allow rild proc_lk_env:file rw_file_perms;
-allow rild sysfs_vcorefs_pwrctrl:file { w_file_perms };
-#allow rild bootdevice_block_device:blk_file { rw_file_perms };
-allow rild para_block_device:blk_file { rw_file_perms };
+allow rild sysfs_vcorefs_pwrctrl:file w_file_perms;
+allow rild para_block_device:blk_file rw_file_perms;
 
 # Allow dir search, fd uses
 allow rild block_device:dir search;
@@ -72,20 +68,11 @@ allow rild platform_app:fd use;
 allow rild radio:fd use;
 
 # For MAL MFI
-allow rild mal_mfi_socket:sock_file { w_file_perms };
+allow rild mal_mfi_socket:sock_file w_file_perms;
 
 # For ccci sysfs node
 allow rild sysfs_ccci:dir search;
 allow rild sysfs_ccci:file r_file_perms;
-
-#Date : W17.18
-#Purpose: Treble SEpolicy denied clean up
-add_hwservice(hal_telephony_server, mtk_hal_rild_hwservice)
-allow hal_telephony_client mtk_hal_rild_hwservice:hwservice_manager find;
-
-#Date : W17.21
-#Purpose: Grant permission to access binder dev node
-vndbinder_use(rild)
 
 #Dat: 2017/03/27
 #Purpose: allow set telephony Sensitive property
@@ -96,8 +83,8 @@ allow rild mtk_agpsd:unix_stream_socket connectto;
 
 #Date: 2017/12/6
 #Purpose: allow set the RS times for /proc/sys/net/ipv6/conf/ccmniX/router_solicitations
-allow rild vendor_shell_exec:file {execute_no_trans};
-allow rild vendor_toolbox_exec:file {execute_no_trans};
+allow rild vendor_shell_exec:file x_file_perms;
+allow rild vendor_toolbox_exec:file x_file_perms;
 
 # Date : WK18.16
 # Operation: P migration
@@ -143,10 +130,6 @@ allow rild proc_cmdline:file r_file_perms;
 # Purpose: Allow packet can be filtered by RILD process
 allow rild self:netlink_netfilter_socket { create_socket_perms_no_ioctl };
 
-# Date : 2019/08/29
-# Purpose: Allow rild to access proc/aed/reboot-reason
-allow rild proc_aed_reboot_reason:file rw_file_perms;
-
 # Date : WK19.43
 # Purpose: Allow wfc module from rild read system property from wfc module
 get_prop(rild, vendor_mtk_wfc_serv_prop)
@@ -165,3 +148,38 @@ set_prop(rild, vendor_mtk_imstestmode_prop)
 # Operation: R migration
 # Purpose: Allow rild to get system_boot_reason_prop
 get_prop(rild, system_boot_reason_prop)
+
+# rild Bringup Policy
+allow rild mtkrild:unix_stream_socket connectto;
+set_prop(rild, radio_prop)
+
+# Allow the socket read/write of netd for rild
+allow rild netd_socket:sock_file { write read };
+
+#Date : W17.20
+#Purpose: allow access to audio hal
+binder_call(rild, mtk_hal_audio)
+hal_client_domain(rild, hal_audio)
+
+# Date : W19.16
+# Operation: Q migration
+# Purpose: Allow rild access to send SUPL INIT to mnld
+allow rild mnld:unix_dgram_socket sendto;
+
+# Date : W19.35
+# Operation: Q migration
+# Purpose: Fix rilproxy SeLinux warning of pre-defined socket
+allow rild gsmrild_socket:sock_file w_file_perms;
+
+# Date: 2021/02/03
+# Operation: for Gen98 RILD dev
+# Allow read/write to devices/files
+allow rild gsm0710muxd_device:chr_file rw_file_perms;
+
+# Date : 2021/08/27
+# Purpose: Allow rild to access ccci wifi proxy
+allow rild ccci_wifi_proxy_device:chr_file rw_file_perms;
+
+# Date: 2021/09/26
+# Purpose: Add permission for vilte
+allow rild ccci_vts_device:chr_file rw_file_perms_no_map;

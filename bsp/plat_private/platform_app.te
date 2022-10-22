@@ -6,13 +6,24 @@
 # Operation : hs_xiangxu
 # Purpose : [ALPS01782971]Settings need read&write to system_app_data_file
 # Package: com.android.settings
-allow platform_app system_app_data_file:file {read write};
+allow platform_app system_app_data_file:file rw_file_perms;
 
 # Date : 2015/09/06
 # Operation : SQC
 # Purpose : [NFC][can not get nfc service]
 # Package: com.android.gallery3d
 allow platform_app nfc_service:service_manager find;
+
+# Date : 2017/06/01
+# Operation : Migration
+# Purpose : Allow camera app to find advcam servive
+allow platform_app mtk_advcamserver_service:service_manager find;
+
+# Date: 2017/06/29
+# Operation: Migration
+# Purpose : Allow UICC terminal to find phoneEx service
+# Package: org.simalliance.openmobileapi
+allow platform_app mtk_radio_service:service_manager find;
 
 # Date : 2017/12/21
 # Operation: IT
@@ -51,7 +62,7 @@ get_prop(platform_app, system_mtk_wfc_entitlement_prop)
 # Date : 2018/07/27
 # Operation : Migration
 # Purpose : allow platform_app to find aal_service
-allow platform_app aal_service:service_manager { find };
+allow platform_app aal_service:service_manager find;
 
 # Date: 2018/10/25
 # Operation: Clientapi Develope
@@ -72,10 +83,6 @@ set_prop(platform_app, system_mtk_subsidylock_prop)
 get_prop(platform_app, system_mtk_acs_url_prop)
 get_prop(platform_app, system_mtk_acs_version_prop)
 get_prop(platform_app, system_mtk_acs_support_prop)
-
-# Date : WK19.22
-# Purpose : access gpu hal
-hal_client_domain(platform_app, hal_gpu)
 
 # Date : 2019/05/28
 # Operation : Q Migration
@@ -117,4 +124,24 @@ allow platform_app cta_networkdatacontroller_service:service_manager find;
 
 # Data : 2020/09/21
 # Purpose : allow to setprop persist.vendor.radio.bgdata.disable
-set_prop(platform_app,system_mtk_bgdata_disabled_prop);
+set_prop(platform_app, system_mtk_bgdata_disabled_prop)
+
+# Allow platform_app to interact with hal_teei_tui
+hal_client_domain(platform_app, hal_teei_tui)
+
+# Allow platform_app to interact with hal_teei_capi
+hal_client_domain(platform_app, hal_teei_capi)
+
+# Allow platform_app to interact with hal_teei_thh
+hal_client_domain(platform_app, hal_teei_thh)
+
+hal_client_domain(platform_app, hal_teei_ifaa)
+hal_client_domain(platform_app, hal_teei_wechat)
+
+# Date:2021/11/13
+# Operation: Add for DSDA in Dialer, add permission for accessing vendor.radio.dsda.state
+get_prop(platform_app, system_mtk_common_data_prop)
+
+# VoNR : 2021/11/26
+# Purpose : allow to setprop persist.vendor.dbg.vonr_ui_ovr
+set_prop(platform_app,system_mtk_dbg_ims_prop);

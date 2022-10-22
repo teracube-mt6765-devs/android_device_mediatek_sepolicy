@@ -21,12 +21,14 @@ allow appdomain gpu_device:dir search;
 # Operation: SQC
 # Purpose : Allow HWUI to access perfmgr
 allow appdomain proc_perfmgr:dir search;
-allow appdomain proc_perfmgr:file { getattr open read ioctl};
+allow appdomain proc_perfmgr:file r_file_perms;
 allowxperm appdomain proc_perfmgr:file ioctl {
   PERFMGR_FPSGO_QUEUE
   PERFMGR_FPSGO_DEQUEUE
   PERFMGR_FPSGO_QUEUE_CONNECT
   PERFMGR_FPSGO_BQID
+  PERFMGR_FPSGO_SWAP_BUFFER
+  PERFMGR_FPSGO_SBE_RESCUE
 };
 
 # Date : W19.23
@@ -46,5 +48,9 @@ hwbinder_use({ appdomain -isolated_app })
 get_prop({ appdomain -isolated_app }, hwservicemanager_prop)
 allow { appdomain -isolated_app } hidl_manager_hwservice:hwservice_manager find;
 binder_call({ appdomain -isolated_app }, mtk_safe_halserverdomain_type)
-binder_call(mtk_safe_halserverdomain_type, { appdomain -isolated_app })
 allow { appdomain -isolated_app } mtk_safe_hwservice_manager_type:hwservice_manager find;
+
+# Date : 2021/04/24
+# Operation: addwindow
+# Purpose: Get the variable value of touch report rate
+get_prop(appdomain, vendor_mtk_input_report_rate_prop)

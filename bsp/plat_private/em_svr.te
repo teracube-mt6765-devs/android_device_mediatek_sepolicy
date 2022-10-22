@@ -5,26 +5,14 @@
 # Common SEPolicy Rule
 # ==============================================
 
-
 # Date: WK1823
 # Purpose: Rsc switch
-allow em_svr sysfs_dt_firmware_android:dir { read search open };
-allow em_svr sysfs_dt_firmware_android:file { read getattr open };
+allow em_svr sysfs_dt_firmware_android:dir r_dir_perms;
+allow em_svr sysfs_dt_firmware_android:file r_file_perms;
 
 # Date: 2020/03/25
 # Purpose : EM Power PMU reading/setting
-allow em_svr sysfs_pmu:dir { search };
-allow em_svr sysfs_pmu:file rw_file_perms;
-allow em_svr sysfs_pmu:lnk_file r_file_perms;
-
-# Date: 2020/03/25
-# Purpose : EM Power PMU register reading/setting
-allow em_svr debugfs_regmap:dir { search };
-allow em_svr debugfs_regmap:file rw_file_perms;
-
-# Date: 2020/03/25
-# Purpose : EM Power PMU reading/setting
-allow em_svr sysfs_pmu:dir { search };
+allow em_svr sysfs_pmu:dir search;
 allow em_svr sysfs_pmu:file rw_file_perms;
 allow em_svr sysfs_pmu:lnk_file r_file_perms;
 
@@ -52,7 +40,7 @@ allow em_svr toolbox_exec:file rx_file_perms;
 
 # Date: WK1812
 # Purpose: add for battery log
-allow em_svr proc_battery_cmd:dir { search };
+allow em_svr proc_battery_cmd:dir search;
 allow em_svr proc_battery_cmd:file create_file_perms;
 
 # Date: WK2016
@@ -66,3 +54,8 @@ allow em_svr fuse:dir w_dir_perms;
 # Purpose: Allow EM read usb_rawbulk
 allow em_svr sys_usb_rawbulk:dir r_dir_perms;
 allow em_svr sys_usb_rawbulk:file r_file_perms;
+
+# Date 2021/04/26
+# Purpose: Rsc usage
+allow em_svr gsi_metadata_file:dir search;
+allow em_svr metadata_file:dir search;

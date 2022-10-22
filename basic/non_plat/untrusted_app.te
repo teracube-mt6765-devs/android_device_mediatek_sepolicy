@@ -2,8 +2,6 @@
 # Common SEPolicy Rule
 # ==============================================
 
-# TODO:: Security Issue.
-
 # Date: 2016/02/26
 # Operation: Migration
 # Purpose: Allow MTK modified ElephantStress and WhatsTemp to read thermal zone temperatures

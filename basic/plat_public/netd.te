@@ -2,7 +2,5 @@
 # Common SEPolicy Rule
 # ==============================================
 
-# Netd
-
 #Suppress the denial for netd to use surfaceflinger
 dontaudit netd surfaceflinger:fd use;

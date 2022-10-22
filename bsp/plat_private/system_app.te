@@ -1,6 +1,6 @@
 # ==============================================
 # Common SEPolicy Rule
-# =================
+# ==============================================
 
 # Date: 2016/11/10
 # Purpose: [MDM] Modem monitor config
@@ -10,6 +10,7 @@ set_prop(system_app, config_prop)
 # Date : WK17.31
 # Operation : Migration
 # Purpose : Carrier express service on BSP
+allow system_app mtk_carrierexpress_service:service_manager add;
 set_prop(system_app, system_mtk_usp_srv_prop)
 set_prop(system_app, system_mtk_persist_vendor_vzw_device_type_prop)
 set_prop(system_app, system_mtk_uce_support_prop)
@@ -52,10 +53,10 @@ get_prop(system_app, system_mtk_wfc_opt_in_prop)
 # Operation : New feature for VSIM SQC
 set_prop(system_app, system_mtk_vsim_sys_prop)
 
-# Date : 2018/08/1
-# Stage: Migration
-# Purpose: allow system app to set system_mtk_update_prop property
-set_prop(system_app, system_mtk_update_prop)
+# Date : W18.28
+# Operation : New feature for VSIM SQC
+# Purpose : Allow OSI Permission control to tcp socket
+allow system_app osi:tcp_socket create_socket_perms_no_ioctl;
 
 # Date: 2018/10/26
 # Purpose: Allow system app to get Subsidy Lock properties
@@ -69,10 +70,6 @@ set_prop(system_app, system_mtk_subsidylock_connect_prop)
 # Purpose: Permission Control configure
 # Package Name: com.mediatek.security
 set_prop(system_app, system_mtk_permission_control_prop)
-
-# Date : WK19.22
-# Purpose : access gpu hal
-hal_client_domain(system_app, hal_gpu)
 
 # Date:2019/05/21
 # Purpose: Allow OP12settings to get opt_in_url_prop
@@ -105,17 +102,17 @@ get_prop(system_app, system_mtk_wfc_entitlement_prop)
 # Package Name: com.mediatek.mdmconfig
 get_prop(system_app, system_mtk_init_svc_md_monitor_prop)
 
-# Date : 2020/03/19
-# Operation : Migration
-# Purpose : Allow presence service to add AOSP service by ServiceManager
-allow system_app uce_service:service_manager add;
-
 # Date : 2020/03/23
 # Operation : Migration
 # Purpose : Allow cta_networkdatacontroller_service to add AOSP service by ServiceManager
 allow system_app cta_networkdatacontroller_service:service_manager add;
 
+# MICROTRUST SEPolicy Rule
+# Date : 2017/12/18
+# Operation: ifaa integration
+# Purpose: access for ifaa_service call
+# Package: org.ifaa.android.service
+add_service(system_app, teei_ifaa_service)
 
-# MICROTRUST Services
-# Purpose: access for tface_service call
-allow system_app tface_service:service_manager add;
+hal_client_domain(system_app, hal_teei_ifaa)
+hal_client_domain(system_app, hal_teei_wechat)

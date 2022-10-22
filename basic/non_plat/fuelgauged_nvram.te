@@ -4,9 +4,8 @@
 # ==============================================
 # Type Declaration
 # ==============================================
-type fuelgauged_nvram ,domain;
+type fuelgauged_nvram, domain;
 type fuelgauged_nvram_exec , exec_type, file_type, vendor_file_type;
-type fuelgauged_nvram_file, file_type, data_file_type;
 
 # ==============================================
 # Common SEPolicy Rule
@@ -18,19 +17,15 @@ init_daemon_domain(fuelgauged_nvram)
 # Operation : New Feature
 # Purpose : For fg daemon can do nvram r/w to save car_tune_value
 allow fuelgauged_nvram nvdata_file:dir rw_dir_perms;
-allow fuelgauged_nvram nvdata_file:file {rw_file_perms create_file_perms};
-allow fuelgauged_nvram nvram_data_file:lnk_file rw_file_perms;
+allow fuelgauged_nvram nvdata_file:file create_file_perms;
 allow fuelgauged_nvram nvdata_file:lnk_file rw_file_perms;
-
-allow fuelgauged_nvram fuelgauged_file:dir rw_dir_perms;
-allow fuelgauged_nvram fuelgauged_file:file {rw_file_perms create_file_perms};
+allow fuelgauged_nvram nvram_data_file:lnk_file rw_file_perms;
 
 # Data : W16.43
 # Operation : New Feature
 # Purpose : Change from /data to /cache
-allow fuelgauged_nvram self:capability { chown };
-allow fuelgauged_nvram kmsg_device:chr_file { write open };
-allow fuelgauged_nvram self:capability fsetid;
+allow fuelgauged_nvram self:capability { chown fsetid };
+allow fuelgauged_nvram kmsg_device:chr_file w_file_perms;
 
 # Data : W17.34
 # Operation : New Feature
@@ -55,4 +50,7 @@ r_dir_file(fuelgauged_nvram, sysfs_batteryinfo)
 # Purpose: Allow to search /mnt/vendor/nvdata for fstab when using NVM_Init()
 allow fuelgauged_nvram mnt_vendor_file:dir search;
 
-allow fuelgauged_nvram sysfs_boot_mode:file { open read };
+allow fuelgauged_nvram sysfs_boot_mode:file r_file_perms;
+
+# Allow ReadDefaultFstab().
+read_fstab(fuelgauged_nvram)

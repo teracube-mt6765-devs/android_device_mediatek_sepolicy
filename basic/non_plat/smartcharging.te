@@ -4,8 +4,8 @@
 # ==============================================
 # Type Declaration
 # ==============================================
-type smartcharging ,domain;
-type smartcharging_exec , exec_type, file_type, vendor_file_type;
+type smartcharging, domain;
+type smartcharging_exec, exec_type, file_type, vendor_file_type;
 
 # ==============================================
 # Common SEPolicy Rule
@@ -28,7 +28,7 @@ allow smartcharging kmsg_device:chr_file w_file_perms;
 # Operation : Migration
 # Purpose : For smartcharging daemon can comminucate with kernel
 allow smartcharging self:netlink_socket create_socket_perms_no_ioctl;
-allow smartcharging self:netlink_route_socket { bind create getattr write nlmsg_read read nlmsg_write };
+allow smartcharging self:netlink_route_socket { create_socket_perms_no_ioctl nlmsg_read nlmsg_write };
 
 # Data : WK16.39
 allow smartcharging self:capability { fsetid };
@@ -36,5 +36,5 @@ allow smartcharging self:capability { fsetid };
 # Date: W18.17
 # Operation : add label for /sys/devices/platform/battery(/.*)
 # Purpose : add smartcharging could access
-r_dir_file(smartcharging, sysfs_batteryinfo);
+r_dir_file(smartcharging, sysfs_batteryinfo)
 

@@ -1,6 +1,10 @@
 # ==============================================
 # Policy File of /system/priv-app/EngineerMode/EngineerMode.apk Executable File
 
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
 typeattribute em_app mlstrustedsubject;
 app_domain(em_app)
 
@@ -16,7 +20,7 @@ allow em_app textservices_service:service_manager find;
 allow em_app audio_service:service_manager find;
 
 # Allow to use HAL em
-hal_client_domain(em_app, mtk_hal_em)
+hal_client_domain(em_app, hal_mtk_em)
 
 # Allow for BT # Main activity start
 allow em_app bluetooth_manager_service:service_manager find;
@@ -78,9 +82,6 @@ set_prop(em_app, system_mtk_media_wfd_prop)
 #For setting md power off property
 set_prop(em_app, system_mtk_power_off_md_prop)
 
-#For debug utils
-get_prop(em_app, system_mtk_persist_mtk_aee_prop)
-
 #For video log
 set_prop(em_app, system_mtk_logmuch_prop)
 
@@ -93,9 +94,10 @@ set_prop(em_app, system_mtk_bgdata_disabled_prop)
 # For uce service
 get_prop(em_app, system_mtk_uce_support_prop)
 
+allow em_app radio_service:service_manager find;
+
 # Date: 2020/03/25
 # For power pmu register
-allow em_app debugfs_regmap:dir search;
 allow em_app sysfs_pmu:dir search;
 
 # Date: 2020/03/25
@@ -110,14 +112,9 @@ allow em_app sysfs_android0_usb:file r_file_perms;
 allow em_app sysfs_android_usb:dir search;
 allow em_app sysfs_android_usb:file r_file_perms;
 
-# Date: 2020/03/25
-# Purpose : for engineermode Usb PHY Tuning
-allow em_app debugfs_usb_plat:file r_file_perms;
-allow em_app debugfs_usb_plat:dir search;
-
 # Date : 2020/03/25
 #For usb test
-set_prop(em_app, usb_control_prop)
+set_prop(em_app, usb_prop)
 
 # Date: 2020/03/25
 # For PMU reading
@@ -142,7 +139,7 @@ allow em_app sysfs_fg_disable:file r_file_perms;
 allow em_app sysfs_dis_nafg:file r_file_perms;
 
 # Date: 2020/03/25
-#Purpose:For wakelock get power manager service
+# Purpose:For wakelock get power manager service
 allow em_app thermal_service:service_manager find;
 
 # Date : 2020/03/25
@@ -177,32 +174,34 @@ allow em_app debuglog_data_file:file rw_file_perms;
 allow em_app media_session_service:service_manager find;
 allow em_app mediaserver_service:service_manager find;
 
+# Date : 2020/04/28
+# Purpose : STMicro NFC integration for Engineering mode
+allow em_app nfc_service:service_manager find;
+
 # Date : 2020/04/30
 # Purpose: EmRadioHidlAosp get AospRadioProxy
 hal_client_domain(em_app, hal_telephony)
 
 # Date : 2020/04/30
-#Purpose: getSystemService(TELEPHONY_SERVICE)
+# Purpose: getSystemService(TELEPHONY_SERVICE)
 allow em_app registry_service:service_manager find;
-binder_call(em_app,gpuservice)
+binder_call(em_app, gpuservice)
 
 # Date : 2020/04/30
-#Purpose: telephony->npt, ccm hopping get serial
-get_prop(em_app,radio_prop)
-
+# Purpose: telephony->npt, ccm hopping get serial
+get_prop(em_app, radio_prop)
 
 # Date : 2020/04/30
-#Purpose: FeatureSupport ro.build.type, ro.board.platform
-get_prop(em_app,build_prop)
-get_prop(em_app,exported_default_prop)
+# Purpose: FeatureSupport ro.build.type, ro.board.platform
+get_prop(em_app, exported_default_prop)
 
 # Date: 2020/04/30
 #Purpose: telephony ->WifiCalling.EntitlementConfigActivity
-set_prop(em_app,system_mtk_wfc_entitlement_prop)
+set_prop(em_app, system_mtk_wfc_entitlement_prop)
 
 # Date: 2020/04/30
 #Purpose: telephony ->networkinfotc1.MDMCoreOperation
-set_prop(em_app,config_prop)
+set_prop(em_app, config_prop)
 
 # Date: 2020/04/30
 # For uce related access
@@ -244,3 +243,22 @@ allow em_app uimode_service:service_manager find;
 # Operation : DEBUG
 # Purpose : Allow EM to set system_mtk_common_data_prop
 set_prop(em_app, system_mtk_common_data_prop)
+
+# Date : 2021/01/07
+# Purpose : Allow EM to read ro.vendor.mtk_gwsd_support
+get_prop(em_app, system_mtk_gwsd_prop)
+
+# Date: 2021/01/27
+# Purpose: Allow EM to read/set sys.usb.config
+set_prop(em_app, usb_control_prop)
+
+# Purpose: Allow EM to ro.build.type
+get_prop(em_app, build_prop)
+
+# Purpose: Allow EM to ro.vendor.vodata_support
+get_prop(em_app, system_mtk_vodata_prop)
+
+# Date: 2021/04/27
+# Purpose: Allow EM to access shared preference data
+allow em_app em_app_data_file:dir create_dir_perms;
+allow em_app em_app_data_file:file create_file_perms;

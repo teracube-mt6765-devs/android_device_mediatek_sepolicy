@@ -1,3 +1,7 @@
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
 # proc_ged ioctls
 define(`proc_ged_ioctls', `{
   GED_BRIDGE_IO_LOG_BUF_GET
@@ -16,6 +20,7 @@ define(`proc_ged_ioctls', `{
   GED_BRIDGE_IO_GPU_HINT_TO_CPU
   GED_BRIDGE_IO_HINT_FORCE_MDP
   GED_BRIDGE_IO_QUERY_DVFS_FREQ_PRED
+  GED_BRIDGE_IO_QUERY_GPU_DVFS_INFO
   GED_BRIDGE_IO_GE_ALLOC
   GED_BRIDGE_IO_GE_GET
   GED_BRIDGE_IO_GE_SET
@@ -23,4 +28,6 @@ define(`proc_ged_ioctls', `{
   GED_BRIDGE_IO_TARGET_FPS
   GED_BRIDGE_IO_GE_INFO
   GED_BRIDGE_IO_GPU_TUNER_STATUS
+  GED_BRIDGE_IO_DMABUF_SET_NAME
+  GED_BRIDGE_IO_CREATE_TIMELINE
 }')

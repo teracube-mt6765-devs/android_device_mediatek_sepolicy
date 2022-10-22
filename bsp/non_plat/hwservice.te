@@ -1,12 +1,7 @@
-# ==============================================
-# Common SEPolicy Rule
-# ==============================================
-
 type mtk_hal_wfo_hwservice, hwservice_manager_type;
-type mtk_hal_keyinstall_hwservice, hwservice_manager_type;
 type volte_uce_ua_hwservice, hwservice_manager_type;
 type mtk_hal_videotelephony_hwservice, hwservice_manager_type;
-type hal_mtkcodecservice_hwservice, hwservice_manager_type;
+type mtk_hal_codecservice_hwservice, hwservice_manager_type;
 type mtk_hal_netdagent_hwservice, hwservice_manager_type;
 type volte_rcs_ua_hwservice, hwservice_manager_type;
 type mtk_hal_dfps_hwservice, hwservice_manager_type;
@@ -25,19 +20,23 @@ type mtk_hal_touchll_hwservice, hwservice_manager_type;
 # thp
 type mtk_hal_thp_hwservice, hwservice_manager_type;
 
-# ==============================================
-# TEE SEPolicy Rule
-# ==============================================
+# MICROTRUST SEPolicy Rule
 # microtrust THH service manager type
-type hal_thh_hwservice, hwservice_manager_type;
+type teei_hal_thh_hwservice, hwservice_manager_type;
+
 # microtrust TUI service manager type
-type hal_tui_hwservice, hwservice_manager_type;
+type teei_hal_tui_hwservice, hwservice_manager_type;
+
+# microtrust IFAA service manager type
+type teei_hal_ifaa_hwservice, hwservice_manager_type;
+
 # microtrust CAPI service manager type
-type hal_capi_hwservice, hwservice_manager_type;
+type teei_hal_capi_hwservice, hwservice_manager_type;
 
-# microtrust TFace service manager type
-type mtk_hal_tface_hwservice, hwservice_manager_type;
+# microtrust WECHAT service manager type
+type teei_hal_wechat_hwservice, hwservice_manager_type;
 
+# Trustonic SEPolicy Rule
 type hal_tee_hwservice, hwservice_manager_type;
 type hal_teeregistry_hwservice, hwservice_manager_type;
 
@@ -51,6 +50,6 @@ type mtk_mdm_hidl_server, hwservice_manager_type;
 type volte_clientapi_ua_hwservice, hwservice_manager_type;
 
 # ==============================================
-# HDCP Policy Rule
+# HDCP SEPolicy Rule
 # ==============================================
-type mtk_hal_hdcp_hwservice, hwservice_manager_type;
+type tesiai_hal_hdcp_hwservice, hwservice_manager_type;

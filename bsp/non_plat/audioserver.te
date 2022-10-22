@@ -1,29 +1,23 @@
 # ==============================================
-# Common SEPolicy Rule for vendor
+# Common SEPolicy Rule
 # ==============================================
 
 # Date : WK15.03
 # Operation : Migration
 # Purpose : offloadservice
-allow audioserver offloadservice_device:chr_file { rw_file_perms };
+allow audioserver offloadservice_device:chr_file rw_file_perms;
 
 # Date : WK15.44
 # Operation : Migration
 # Purpose : ancservice
-allow audioserver ancservice_device:chr_file { rw_file_perms };
-
-# Date : WK16.40
-# Operation : Migration
-# Purpose : perf service for cpu control and rt thread
-allow audioserver mtk_perf_service:service_manager find;
+allow audioserver ancservice_device:chr_file rw_file_perms;
 
 # Date : WK17.31
 # Operation : ViLTE
 # Purpose : for ViLTE - set VTservice has permission to access me
-allow audioserver vtservice:binder { transfer call };
-allow audioserver vtservice:fd use;
+binder_call(audioserver, vtservice)
 
 # Date : WK18.42
 # Operation : Migration
 # Purpose : adsp
-allow audioserver adsp_device:chr_file { rw_file_perms };
+allow audioserver adsp_device:chr_file rw_file_perms;

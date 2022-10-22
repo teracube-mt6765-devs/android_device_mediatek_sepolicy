@@ -1,10 +1,6 @@
 # ==============================================
 # Common SEPolicy Rule
-# ============
+# ==============================================
 
 #Date : W1728
-allow bootanim resourcecache_data_file:file read;
-
-# Date : WK19.22
-# Purpose : access gpu hal
-hal_client_domain(bootanim, hal_gpu)
+allow bootanim resourcecache_data_file:file r_file_perms;

@@ -1,13 +1,10 @@
 # ==============================================
 # Common SEPolicy Rule
-# ============
+# ==============================================
 
-# Date : 2020/04/28
-# Operation: TEEI integration
-# Purpose: Microtrust bp_kmsetkey_ca service
-
-type bp_kmsetkey_ca, domain;
 type bp_kmsetkey_ca_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(bp_kmsetkey_ca)
 
 set_prop(bp_kmsetkey_ca, vendor_mtk_soter_teei_prop)
 
@@ -15,5 +12,3 @@ allow bp_kmsetkey_ca ut_keymaster_device:chr_file rw_file_perms;
 allow bp_kmsetkey_ca teei_client_device:chr_file rw_file_perms;
 
 hal_client_domain(bp_kmsetkey_ca, hal_keymaster)
-
-init_daemon_domain(bp_kmsetkey_ca)

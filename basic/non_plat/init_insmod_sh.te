@@ -15,7 +15,3 @@ allow init_insmod_sh proc_modules:file r_file_perms;
 # Date : WK20.46
 # Purpose : Set the vendor.all.modules.ready property
 set_prop(init_insmod_sh, vendor_mtk_device_prop)
-
-# Date : WK20.46
-# Purpose : debugfs files
-allow init_insmod_sh debugfs_ged:dir search;

@@ -1,19 +1,12 @@
 # ==============================================
-# Policy File of /system/bin/mmp Executable File 
-
-
-# ==============================================
-# Type Declaration
-# ==============================================
-
-type mmp_exec, system_file_type, exec_type, file_type;
-type mmp ,domain;
-
-typeattribute mmp coredomain;
+# Policy File of /system/bin/mmp Executable File
 
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
+
+typeattribute mmp coredomain;
+type mmp_exec, system_file_type, exec_type, file_type;
 
 init_daemon_domain(mmp)
 

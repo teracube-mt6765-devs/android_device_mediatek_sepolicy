@@ -4,8 +4,8 @@
 # ==============================================
 # Type Declaration
 # ==============================================
-type thermal_manager_exec , exec_type, file_type, vendor_file_type;
-type thermal_manager ,domain;
+type thermal_manager_exec, exec_type, file_type, vendor_file_type;
+type thermal_manager, domain;
 
 # ==============================================
 # Common SEPolicy Rule
@@ -18,21 +18,19 @@ allow thermal_manager proc_thermal:dir search;
 allow thermal_manager proc_mtkcooler:file rw_file_perms;
 allow thermal_manager proc_mtktz:file rw_file_perms;
 allow thermal_manager proc_thermal:file rw_file_perms;
-
 allow thermal_manager thermal_manager_data_file:file create_file_perms;
 allow thermal_manager thermal_manager_data_file:dir { rw_dir_perms setattr };
-
 allow thermal_manager mediaserver:fd use;
-allow thermal_manager mediaserver:fifo_file { read write };
+allow thermal_manager mediaserver:fifo_file rw_file_perms;
 allow thermal_manager mediaserver:tcp_socket { read write };
 
 # Date : WK16.30
 # Operation : Migration
 # Purpose :
-allow thermal_manager camera_isp_device:chr_file { read write };
+allow thermal_manager camera_isp_device:chr_file rw_file_perms;
 allow thermal_manager cameraserver:fd use;
-allow thermal_manager kd_camera_hw_device:chr_file { read write };
-allow thermal_manager MTK_SMI_device:chr_file read;
+allow thermal_manager kd_camera_hw_device:chr_file rw_file_perms;
+allow thermal_manager MTK_SMI_device:chr_file r_file_perms;
 allow thermal_manager surfaceflinger:fd use;
 set_prop(thermal_manager, vendor_mtk_thermal_config_prop)
 
@@ -43,11 +41,7 @@ set_prop(thermal_manager, vendor_mtk_thermal_config_prop)
 # path = " sys/class/thermal/"
 allow thermal_manager sysfs_therm:file w_file_perms;
 
-
-
 # Date : WK18.18
 # Operation : P Migration
 # Purpose : Allow thermal_manager to access vendor data file.
-
 allow thermal_manager self:capability { fowner chown };
-

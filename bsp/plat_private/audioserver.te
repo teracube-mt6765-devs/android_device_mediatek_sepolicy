@@ -2,9 +2,10 @@
 # Common SEPolicy Rule
 # ==============================================
 
-# Date : WK20.14
-# Operation : Migartion
-# Purpose : MTK Audio debug use
-set_prop(audioserver, audio_prop)
+# Date : WK16.40
+# Operation : Migration
+# Purpose : perf service for cpu control and rt thread
+allow audioserver mtk_perf_service:service_manager find;
+
 allow audioserver debuglog_data_file:dir { relabelto create_dir_perms };
 allow audioserver debuglog_data_file:file create_file_perms;

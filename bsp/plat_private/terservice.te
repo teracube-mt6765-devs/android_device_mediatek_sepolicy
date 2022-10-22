@@ -1,18 +1,12 @@
 # ==============================================
 # Policy File of /system/bin/terservice Executable File
 
-
-# ==============================================
-# Type Declaration
-# ==============================================
-
-type terservice_exec, system_file_type, exec_type, file_type;
-# New added for move to /system
-typeattribute terservice coredomain;
-
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
+
+type terservice_exec, system_file_type, exec_type, file_type;
+typeattribute terservice coredomain;
 
 init_daemon_domain(terservice)
 

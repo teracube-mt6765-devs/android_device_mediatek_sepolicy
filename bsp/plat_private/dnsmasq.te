@@ -1,6 +1,5 @@
 # ==============================================
 # Common SEPolicy Rule
-# ============
+# ==============================================
 
-
-allow dnsmasq netd:file read;
+allow dnsmasq netd:file r_file_perms;

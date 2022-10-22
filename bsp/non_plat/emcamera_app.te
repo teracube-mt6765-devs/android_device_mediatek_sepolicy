@@ -1,18 +1,16 @@
 # ==============================================
 # Policy File of /vendor/app/emcamera Executable File
 
-# This is for common part
-type emcamera_app, domain;
-app_domain(emcamera_app)
-
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
 
+app_domain(emcamera_app)
+
 # Date: WK1931
 # Purpose:  write data/vendor/camera_dump
-allow emcamera_app vendor_camera_dump_file:dir { create_dir_perms };
-allow emcamera_app vendor_camera_dump_file:file { create_file_perms };
+allow emcamera_app vendor_camera_dump_file:dir create_dir_perms;
+allow emcamera_app vendor_camera_dump_file:file create_file_perms;
 
 allow emcamera_app cameraserver_service:service_manager find;
 allow emcamera_app activity_service:service_manager find;

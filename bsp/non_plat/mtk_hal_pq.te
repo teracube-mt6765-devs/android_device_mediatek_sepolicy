@@ -8,9 +8,8 @@
 # Date : WK17.01
 # Operation : New feature: Factory Gamma
 # Purpose : Allow nvram access
-allow mtk_hal_pq nvdata_file:dir { write search add_name };
-allow mtk_hal_pq nvdata_file:file { read write getattr setattr open create };
-allow mtk_hal_pq nvram_data_file:dir search;
+allow mtk_hal_pq nvdata_file:dir w_dir_perms;
+allow mtk_hal_pq nvdata_file:file create_file_perms;
 allow mtk_hal_pq nvram_data_file:dir w_dir_perms;
 allow mtk_hal_pq nvram_data_file:file create_file_perms;
 allow mtk_hal_pq nvram_data_file:lnk_file read;
@@ -20,4 +19,4 @@ allow mtk_hal_pq nvdata_file:lnk_file read;
 # Purpose : create hidl handle for buffer
 allow mtk_hal_pq hal_graphics_allocator_default:fd use;
 allow mtk_hal_pq proc_ged:file r_file_perms;
-allowxperm mtk_hal_pq proc_ged:file ioctl { proc_ged_ioctls };
+allowxperm mtk_hal_pq proc_ged:file ioctl proc_ged_ioctls;

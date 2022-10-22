@@ -1,3 +1,7 @@
+# ==============================================
+# Common SEPolicy Rule
+# ==============================================
+
 #=============allow ccci_mdinit to start/stop fsd==============
 typeattribute ccci_mdinit mtkimsapdomain;
 set_prop(ccci_mdinit, vendor_mtk_ctl_ccci_rpcd_prop)

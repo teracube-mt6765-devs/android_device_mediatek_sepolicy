@@ -1,12 +1,18 @@
 # ==============================================
 # Policy File of /vendor/bin/statusd Executable File
 
-type statusd_exec, exec_type, file_type, vendor_file_type;
-type statusd, domain;
+# ==============================================
+# Common SEPolicy Rule
+# =============================================
 
-# permissive statusd;
+type statusd_exec, exec_type, file_type, vendor_file_type;
+typeattribute statusd mtkimsapdomain;
 
 init_daemon_domain(statusd)
+
+# Dat: 2017/02/14
+# Purpose: allow set telephony Sensitive property
+set_prop(statusd, vendor_mtk_telephony_sensitive_prop)
 
 allow statusd block_device:dir search;
 allow statusd flashlessd_exec:file rx_file_perms;
@@ -31,7 +37,6 @@ allow statusd sysfs_wake_lock:file { read write open };
 
 allow statusd c2k_file:dir create_dir_perms;
 allow statusd c2k_file:file create_file_perms;
-#allow statusd system_file:file execute_no_trans;
 allow statusd ttyMT_device:chr_file { read write ioctl open };
 allow statusd ttySDIO_device:chr_file { read write open setattr ioctl};
 allow statusd viarild_exec:file rx_file_perms;
@@ -41,5 +46,14 @@ allow statusd vmodem_device:chr_file { read write open setattr ioctl};
 set_prop(statusd, vendor_mtk_ril_mux_report_case_prop)
 set_prop(statusd, vendor_mtk_cdma_prop)
 
-#Search permission for findPidByName
+# Search permission for findPidByName
 allow statusd domain:dir search;
+
+# N bringup: viarild is lunched by Statusd, should add the following permission to Status.
+allow statusd devpts:chr_file rw_file_perms;
+
+# Andorid O : Add permission to statusd.
+allowxperm statusd self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
+allow statusd sysfs_ccci:dir search;
+allow statusd sysfs_ccci:file r_file_perms;
+allow statusd vndbinder_device:chr_file r_file_perms;

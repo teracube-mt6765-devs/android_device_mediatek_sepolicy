@@ -14,10 +14,11 @@ init_daemon_domain(mtk_agpsd)
 
 net_domain(mtk_agpsd)
 
+wakelock_use(mtk_agpsd)
+
 # Access channels to modem for E-CID, RRLP, and LPP
 allow mtk_agpsd agps_device:chr_file rw_file_perms;
 allow mtk_agpsd ttySDIO_device:chr_file { create setattr unlink rw_file_perms };
-allow mtk_agpsd ccci_device:chr_file { create setattr unlink rw_file_perms };
 
 # Access folders, files, and sockets in /data/agps_supl
 allow mtk_agpsd agpsd_data_file:dir create_dir_perms;
@@ -60,13 +61,8 @@ allow mtk_agpsd merged_hal_service:unix_dgram_socket sendto;
 # Allow send socket to fusion rild
 allow mtk_agpsd rild:unix_dgram_socket sendto;
 
-# Allow libapmonitor to read the property of hwservicemanager.ready
-get_prop(mtk_agpsd, hwservicemanager_prop)
-
 # Read the property of vendor.debug.gps.mnld.ne
 get_prop(mtk_agpsd, vendor_mtk_mnld_prop)
 
 # Read the property of ro.vendor.mtk_log_hide_gps
 get_prop(mtk_agpsd, vendor_mtk_gps_support_prop)
-
-wakelock_use(mtk_agpsd)

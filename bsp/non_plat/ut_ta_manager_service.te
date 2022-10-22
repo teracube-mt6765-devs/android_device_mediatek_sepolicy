@@ -1,6 +1,7 @@
 # ==============================================
-# TEE SEPolicy Rule
+# Common SEPolicy Rule
 # ==============================================
-allow platform_app teei_data_file:dir { search write add_name create remove_name};
+
+# MICROTRUST SEPolicy Rule
+allow platform_app teei_data_file:dir create_dir_perms;
 allow platform_app teei_data_file:file create_file_perms;
-allow platform_app teei_data_file:file rw_file_perms;

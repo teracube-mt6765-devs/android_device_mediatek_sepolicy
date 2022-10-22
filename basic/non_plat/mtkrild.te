@@ -4,14 +4,20 @@
 # ==============================================
 # Type Declaration
 # ==============================================
-type mtkrild_exec , exec_type, file_type, vendor_file_type;
-type mtkrild ,domain;
+type mtkrild_exec, exec_type, file_type, vendor_file_type;
+type mtkrild, domain;
 
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
 init_daemon_domain(mtkrild)
 net_domain(mtkrild)
+
+# Access to wake locks
+wakelock_use(mtkrild)
+
+# Allow to use vendor binder
+vndbinder_use(mtkrild)
 
 # Trigger module auto-load.
 allow mtkrild kernel:system module_request;
@@ -35,9 +41,6 @@ set_prop(mtkrild, vendor_mtk_ctl_muxreport-daemon_prop)
 #Purpose: allow set telephony Sensitive property
 set_prop(mtkrild, vendor_mtk_telephony_sensitive_prop)
 
-# Access to wake locks
-wakelock_use(mtkrild)
-
 # Allow access permission to efs files
 allow mtkrild efs_file:dir create_dir_perms;
 allow mtkrild efs_file:file create_file_perms;
@@ -46,10 +49,9 @@ allow mtkrild bluetooth_efs_file:dir r_dir_perms;
 
 # Allow access permission to dir/files
 # (radio data/system data/proc/etc)
-# Violate Android P rule
+
 allow mtkrild sdcardfs:dir r_dir_perms;
-# Violate Android P rule
-#allow mtkrild system_file:file x_file_perms;
+
 allow mtkrild proc_net:file w_file_perms;
 
 # Set and get routes directly via netlink.
@@ -60,18 +62,17 @@ allow mtkrild mtk_radio_device:dir search;
 allow mtkrild radio_device:chr_file rw_file_perms;
 allow mtkrild radio_device:blk_file r_file_perms;
 allow mtkrild mtd_device:dir search;
+
 # Allow read/write to tty devices
 allow mtkrild tty_device:chr_file rw_file_perms;
-allow mtkrild eemcs_device:chr_file { rw_file_perms };
+allow mtkrild eemcs_device:chr_file rw_file_perms;
 
-#allow mtkrild Vcodec_device:chr_file { rw_file_perms };
-allow mtkrild devmap_device:chr_file { r_file_perms };
-allow mtkrild devpts:chr_file { rw_file_perms };
-allow mtkrild ccci_device:chr_file { rw_file_perms };
-allow mtkrild misc_device:chr_file { rw_file_perms };
+allow mtkrild devmap_device:chr_file r_file_perms;
+allow mtkrild devpts:chr_file rw_file_perms;
+allow mtkrild ccci_device:chr_file rw_file_perms;
+allow mtkrild misc_device:chr_file rw_file_perms;
 allow mtkrild proc_lk_env:file rw_file_perms;
-#allow mtkrild bootdevice_block_device:blk_file { rw_file_perms };
-allow mtkrild para_block_device:blk_file { rw_file_perms };
+allow mtkrild para_block_device:blk_file rw_file_perms;
 
 # Allow dir search, fd uses
 allow mtkrild block_device:dir search;
@@ -79,19 +80,14 @@ allow mtkrild platform_app:fd use;
 allow mtkrild radio:fd use;
 
 # For MAL MFI
-allow mtkrild mal_mfi_socket:sock_file { w_file_perms };
+allow mtkrild mal_mfi_socket:sock_file w_file_perms;
 
 # For ccci sysfs node
 allow mtkrild sysfs_ccci:dir search;
 allow mtkrild sysfs_ccci:file r_file_perms;
 
-#For Kryptowire mtklog issue
-allow mtkrild aee_aedv:unix_stream_socket connectto;
 # Allow ioctl in order to control network interface
 allowxperm mtkrild self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
-
-# Allow to use vendor binder
-vndbinder_use(mtkrild)
 
 # Allow to trigger IPv6 RS
 allow mtkrild node:rawip_socket node_bind;
@@ -122,6 +118,11 @@ allow mtkrild nvdata_file:file create_file_perms;
 # Operation: P migration
 # Purpose: Allow supplementary service HIDL to set vendor property
 set_prop(mtkrild, vendor_mtk_ss_vendor_prop)
+
+# Date : W19.16
+# Operation: Q migration
+# Purpose: Allow mtkrild access to send SUPL INIT to mnld
+allow mtkrild mnld:unix_dgram_socket sendto;
 
 # Date : WK19.43
 # Purpose: Allow wfc module from rild read system property from wfc module

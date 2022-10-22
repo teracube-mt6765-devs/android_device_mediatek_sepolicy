@@ -4,4 +4,4 @@
 # ==============================================
 # Type Declaration
 # ==============================================
-type netdiag ,domain;
+type netdiag, domain;

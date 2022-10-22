@@ -1,7 +1,12 @@
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
-
+##########################
+# Filesystem types
+#
+##########################
+# Sys Filesystem types
+#
 # Date : 2020/12/16
 # Operation: R migration
 # Purpose : mtk EM PMU reading/setting

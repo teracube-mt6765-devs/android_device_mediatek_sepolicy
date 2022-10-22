@@ -1,19 +1,12 @@
 # ==============================================
 # Policy File of /system/bin/batterywarning Executable File
 
-
-# ==============================================
-# Type Declaration
-# ==============================================
-
-type batterywarning_exec , system_file_type, exec_type, file_type;
-type batterywarning ,domain;
-# New added for move to /system
-typeattribute batterywarning coredomain;
-
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
+
+type batterywarning_exec, system_file_type, exec_type, file_type;
+typeattribute batterywarning coredomain;
 
 init_daemon_domain(batterywarning)
 
@@ -25,7 +18,7 @@ binder_use(batterywarning)
 # Date : 2014/10/16
 # Operation : Migration
 # Purpose : allow battery warning use AMS to send broadcast through binder call
-allow batterywarning system_server:binder call;
+binder_call(batterywarning, system_server)
 
 # Date : 2015/07/27
 # Operation : Migration
@@ -35,8 +28,7 @@ allow batterywarning activity_service:service_manager find;
 # Date : 2017/07/03
 # Operation : Migration
 # Purpose : allow battery warning read file
-allow batterywarning sysfs_battery_warning:file { open read getattr };
-
+allow batterywarning sysfs_battery_warning:file r_file_perms;
 
 # Date : 2019/07/31
 # Operation : Migration

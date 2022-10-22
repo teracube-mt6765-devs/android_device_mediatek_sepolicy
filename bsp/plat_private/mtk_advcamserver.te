@@ -1,16 +1,12 @@
 # ==============================================
 # Policy File of /system/bin/mtk_advcamserver Executable File
-# ==============================================
-# Type Declaration
-# ==============================================
-type mtk_advcamserver_exec, system_file_type, exec_type, file_type;
-# New added for move to /system
-typeattribute mtk_advcamserver coredomain;
 
-# permissive mtk_advcamserver;
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
+
+type mtk_advcamserver_exec, system_file_type, exec_type, file_type;
+typeattribute mtk_advcamserver coredomain;
 
 init_daemon_domain(mtk_advcamserver)
 
@@ -21,7 +17,7 @@ binder_service(mtk_advcamserver)
 binder_call(mtk_advcamserver, binderservicedomain)
 binder_call(mtk_advcamserver, appdomain)
 
-allow mtk_advcamserver mtk_advcamserver_service:service_manager { add find };
-#allow mtk_advcamserver hal_camera_hwservice:hwservice_manager { find };
+add_service(mtk_advcamserver, mtk_advcamserver_service)
 get_prop(mtk_advcamserver, hwservicemanager_prop)
 
+allow mtk_advcamserver ion_device:chr_file r_file_perms;

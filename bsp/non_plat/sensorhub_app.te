@@ -1,13 +1,10 @@
 # ==============================================
 # Policy File of /vendor/app/sensorhub Executable File
 
-# This is for common part
-type sensorhub_app, domain;
-app_domain(sensorhub_app)
-
 # ==============================================
 # Common SEPolicy Rule
 # ==============================================
+app_domain(sensorhub_app)
 
 allow sensorhub_app activity_service:service_manager find;
 allow sensorhub_app surfaceflinger_service:service_manager find;

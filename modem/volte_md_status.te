@@ -19,3 +19,4 @@ allow volte_md_status ccci_device:chr_file rw_file_perms;
 # Purpose: get set property
 allow volte_md_status property_socket:sock_file write;
 set_prop(volte_md_status, vendor_mtk_md_status_prop)
+

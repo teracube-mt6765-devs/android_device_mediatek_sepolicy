@@ -1,6 +1,6 @@
 # ==============================================
 # Common SEPolicy Rule
-# =================
+# ==============================================
 
 # Date : 2014/11/19
 # Operation: SQC
@@ -12,13 +12,7 @@ allow system_app proc_secmem:file rw_file_perms;
 # Operation: BaseUT
 # Purpose: [Settings][Settings used list views need velocity tracker access touch dev]
 # Package: com.android.settings
-allow system_app touch_device:chr_file { read ioctl open };
-
-# Date: 2014/08/29
-# Stage: BaseUT
-# Purpose: [BatteryWarning][View update graphics]
-# Package Name: com.mediatek.batterywarning
-# allow system_app guiext-server:binder { transfer call };
+allow system_app touch_device:chr_file r_file_perms;
 
 # Date: 2014/08/04
 # Stage: BaseUT
@@ -32,19 +26,18 @@ allow system_app install_data_file:file getattr;
 allow system_app lost_found_data_file:dir getattr;
 allow system_app media_data_file:dir getattr;
 allow system_app property_data_file:dir getattr;
-#allow system_app shell_data_file:dir search;
 allow system_app proc_thermal:dir search;
-allow system_app proc_thermal:file { read getattr open write };
+allow system_app proc_thermal:file rw_file_perms;
 allow system_app proc_mtkcooler:dir search;
-allow system_app proc_mtkcooler:file { read getattr open write };
+allow system_app proc_mtkcooler:file rw_file_perms;
 allow system_app proc_mtktz:dir search;
-allow system_app proc_mtktz:file  { read getattr open write };
-allow system_app proc_slogger:file { read getattr open write };
+allow system_app proc_mtktz:file rw_file_perms;
+allow system_app proc_slogger:file rw_file_perms;
 
 # Date : WK17.23
 # Stage: Migration, SQC
 # Purpose: Allow to use HAL PQ
-hal_client_domain(system_app, hal_pq)
+hal_client_domain(system_app, hal_mtk_pq)
 
 # Date : WK17.29
 # Operation : Migration
@@ -59,7 +52,6 @@ hal_client_domain(system_app, hal_presence)
 # Date : WK17.31
 # Operation : Migration
 # Purpose : Carrier express service on BSP
-allow system_app mtk_carrierexpress_service:service_manager add;
 get_prop(system_app, vendor_mtk_volte_prop)
 get_prop(system_app, vendor_mtk_wfc_prop)
 get_prop(system_app, vendor_mtk_vt_prop)
@@ -84,7 +76,7 @@ allow system_app update_engine:binder { call transfer };
 # Date : WK17.41
 # Stage: Migration, IT
 # Purpose: allow PermissionControl use mtk_hal_netdagent_hwservice
-hal_client_domain(system_app,mtk_hal_netdagent)
+hal_client_domain(system_app, mtk_hal_netdagent)
 
 # Date: WK17.41
 # Operation: SQC
@@ -109,12 +101,7 @@ allow system_app ppl_agent:binder call;
 # Date : WK18.25
 # Stage: Migration
 # Purpose: allow AtciService to access atcid
-hal_client_domain(system_app, hal_atci)
-
-# Date : W18.28
-# Operation : New feature for VSIM SQC
-# Purpose : Allow OSI Permission control to tcp socket
-allow system_app osi:tcp_socket { create connect write read bind accept listen getattr setattr getopt setopt };
+hal_client_domain(system_app, hal_mtk_atci)
 
 # Date: 2018/07/30
 # Purpose: Allow BackupRestore can read /dev/block/mmcblk1.
@@ -128,17 +115,13 @@ get_prop(system_app, vendor_mtk_ss_vendor_prop)
 
 # Date: 2018/04/18
 # Purpose: Allow to use HIDL and access mtk_hal_neuralnetworks
-#allow system_app hal_neuralnetworks_hwservice:hwservice_manager find;
 allow system_app mtk_hal_neuralnetworks:binder { call transfer };
 allow system_app debugfs_ion:dir search;
 
 # Date: 2018/10/31
 # Operation: Support SubsidyLock
-hwbinder_use(system_app)
 hal_client_domain(system_app, hal_telephony)
-allow rild system_app:binder call;
-allow system_app mtk_hal_rild_hwservice:hwservice_manager find;
-allow system_app rild:binder { call transfer };
+binder_call(system_app, rild)
 
 # Date:W18.43
 # Operation : clientapi hal developing
@@ -153,7 +136,7 @@ allow system_app tkcore_admin_device:chr_file rw_file_perms;
 # Date: 2019/05/24
 # Purpose: System APP can submit KPI to DMC through APM HIDL interface
 # Package Name: com.mediatek.apmonitor
-hal_client_domain(system_app, mtk_hal_apm)
+hal_client_domain(system_app, hal_mtk_apm)
 
 # Date: 2019/05/24
 # Purpose: System APP can check DMC proerpty to submit KPI or not.
@@ -178,10 +161,5 @@ get_prop(system_app, vendor_mtk_vinr_prop)
 allow system_app mtk_audiohal_data_file:dir create_dir_perms;
 allow system_app mtk_audiohal_data_file:file create_file_perms;
 
-# Date: 2019/09/11
-# Purpose: Allow atmwifimeta apk to use HIDL and access loghidlvendorservice
-allow system_app mtk_hal_log_hwservice:hwservice_manager find;
-binder_call(system_app, loghidlvendorservice);
 
-# MICROTRUST add for setting get prop
-allow system_app teei_client_device:chr_file r_file_perms;
+hal_client_domain(system_app, hal_fingerprint)

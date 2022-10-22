@@ -6,7 +6,6 @@
 # Type Declaration
 # ==============================================
 
-type md_monitor, domain;
 type md_monitor_exec ,exec_type, vendor_file_type, file_type;
 init_daemon_domain(md_monitor)
 
@@ -42,7 +41,8 @@ hal_server_domain(md_monitor, md_monitor_hal)
 # Date : 2015/10/12
 # Operation : IT
 # Purpose : Allow md_monitor to set
-allow md_monitor ccci_device:chr_file rw_file_perms;
+allow md_monitor ccci_mdmonitor_device:chr_file rw_file_perms;
+allow md_monitor ccci_ccb_device:chr_file rw_file_perms;
 allow md_monitor sysfs_ccci:dir search;
 allow md_monitor sysfs_ccci:file r_file_perms;
 allow md_monitor file_contexts_file:file r_file_perms;

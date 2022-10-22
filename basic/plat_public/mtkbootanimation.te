@@ -1,5 +1,8 @@
 # ==============================================
-# Common SEPolicy Rule
-# ============
+# Policy File of /system/bin/mtkbootanimation Executable File
+
+# ==============================================
+# Type Declaration
+# ==============================================
 #bootanimation oneshot service
 type mtkbootanimation, domain;

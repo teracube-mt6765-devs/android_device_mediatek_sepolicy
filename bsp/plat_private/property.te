@@ -58,7 +58,10 @@ system_internal_prop(system_mtk_world_phone_prop)
 system_internal_prop(system_mtk_ctm_prop)
 system_internal_prop(system_mtk_graphics_sf_gll_prop)
 system_internal_prop(system_mtk_subsidylock_prop)
-
+system_internal_prop(system_mtk_gwsd_prop)
+system_internal_prop(system_mtk_vodata_prop)
+system_internal_prop(system_mtk_fd_prop)
+system_internal_prop(system_mtk_dbg_ims_prop)
 
 # Properties which can be written only by vendor_init
 system_vendor_config_prop(system_mtk_graphics_sf_gll_ro_prop)
@@ -117,3 +120,7 @@ typeattribute system_mtk_wfc_entitlement_prop                extended_core_prope
 typeattribute system_mtk_wfc_opt_in_prop                     extended_core_property_type;
 typeattribute system_mtk_world_phone_prop                    extended_core_property_type;
 typeattribute system_mtk_ctm_prop                            extended_core_property_type;
+typeattribute system_mtk_gwsd_prop                           extended_core_property_type;
+typeattribute system_mtk_vodata_prop                         extended_core_property_type;
+typeattribute system_mtk_fd_prop                             extended_core_property_type;
+typeattribute system_mtk_dbg_ims_prop                        extended_core_property_type;

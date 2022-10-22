@@ -1,7 +1,6 @@
 # ==============================================
 # Common SEPolicy Rule
-# ============
-
+# ==============================================
 
 # Data : 2015/01/14
 # Operation : MT6735 SQC bug fix
@@ -21,3 +20,7 @@ dontaudit lmkd platform_app:fd use;
 # Data : 2018/05/25
 # Operation : Add for duraSpeed socket
 allow lmkd system_server:unix_stream_socket connectto;
+
+# Data : 2021/04/20
+# Operation : Add for powerhal mem index
+hal_client_domain(lmkd, hal_power)

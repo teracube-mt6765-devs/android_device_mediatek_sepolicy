@@ -1,7 +1,6 @@
 # ==============================================
 # Type Declaration
 # ==============================================
-type mtk_hal_dfps, domain;
 type mtk_hal_dfps_exec, exec_type, file_type, vendor_file_type;
 
 # ==============================================
@@ -15,8 +14,6 @@ vndbinder_use(mtk_hal_dfps);
 hal_server_domain(mtk_hal_dfps, hal_dfps)
 
 add_hwservice(hal_dfps_server, mtk_hal_dfps_hwservice)
-
-#r_dir_file(mtk_hal_dfps, system_file)
 
 # sysfs access.
 r_dir_file(mtk_hal_dfps, proc_net);

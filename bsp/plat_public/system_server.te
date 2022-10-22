@@ -1,7 +1,0 @@
-# ==============================================
-# Common SEPolicy Rule
-# ============
-
-#Date:2020/09/25
-#Operation:R Migration, add permission for PMS access /mnt/media_rw/XXXX-XXXX/Android/obb
-dontaudit system_server vfat:dir {read open};

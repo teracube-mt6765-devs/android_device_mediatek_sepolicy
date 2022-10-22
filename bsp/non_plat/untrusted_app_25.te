@@ -2,9 +2,8 @@
 # Common SEPolicy Rule
 # ==============================================
 
-#============= untrusted_app_25 for TUI ==============
+# untrusted_app_25 for TUI
 allow untrusted_app_25 mobicore_vendor_file:dir search;
-#allow untrusted_app_25 mobicore_vendor_file:file { read getattr open };
 
 # Date: 2019/06/17
 # Operation : Migration

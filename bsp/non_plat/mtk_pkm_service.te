@@ -2,25 +2,17 @@
 # Policy File of /vendor/bin/mtk_pkm_service Executable File
 
 # ==============================================
-# Type Declaration
-# ==============================================
-
-type mtk_pkm_service, domain;
-type mtk_pkm_service_exec ,exec_type, file_type, vendor_file_type;
-
-# ==============================================
 # Common SEPolicy Rule
 # ==============================================
 
+type mtk_pkm_service_exec ,exec_type, file_type, vendor_file_type;
+
 init_daemon_domain(mtk_pkm_service)
 
-# ==============================================
 # Date : W1920
 # Operation : Diagnostic framework Q migration
-# ==============================================
-
 # Purpose : allow mtk_pkm_service to send KPI through APM service
-hal_client_domain(mtk_pkm_service, mtk_hal_apm)
+hal_client_domain(mtk_pkm_service, hal_mtk_apm)
 
 # Purpose : for mtk_pkm_service to connenct to md_monitor
 hal_client_domain(mtk_pkm_service, md_monitor_hal)
