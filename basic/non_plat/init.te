@@ -146,3 +146,6 @@ domain_auto_trans(init, postinstall_file, update_engine)
 allow init sysfs_mtk_core_ctl:dir r_dir_perms;
 allow init sysfs_mtk_core_ctl:file rw_file_perms;
 
+# Date : 2022/10/23
+# Purpose: Allow init to open /dev/stpbt
+allow init stpbt_device:chr_file rw_file_perms; 
