@@ -145,3 +145,7 @@ allow init proc_wmtuserproc:file w_file_perms;
 # Date : 2020/12/23
 # Purpose: Allow init to write /proc/driver/conninfra_dbg
 allow init proc_conninfradbg:file w_file_perms;
+
+# Date : 2022/10/23
+# Purpose: Allow init to open /dev/stpbt
+allow init stpbt_device:chr_file rw_file_perms; 
